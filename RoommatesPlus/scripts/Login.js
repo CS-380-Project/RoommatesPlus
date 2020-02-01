@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import {openDatabase} from 'react-native-sqlite-storage';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import * as SQLite from 'expo-sqlite'
 
 const db = SQLite.openDatabase("UserDatabase.db");
-
 
 export default class Login extends Component {
   state = {
@@ -60,6 +61,7 @@ export default class Login extends Component {
             value={this.state.password}/>
 
         <Button title = "Login" onPress = {this.insert.bind(this, this.state.email, this.state.password)}/>
+        <Button title = "Create Account" onPress = {() => this.props.navigation.navigate('CrtAccountScreen')}/>
 
         <Text>Email retrieved from state: {this.state.email}</Text>
         <Text>Password retrieved from state: {this.state.password}</Text>
@@ -67,8 +69,6 @@ export default class Login extends Component {
       </View>
     );
   }
-
-   
 }   
 
 // styles
@@ -87,3 +87,4 @@ const styles = StyleSheet.create({
     borderWidth: 1
   }
 });
+
