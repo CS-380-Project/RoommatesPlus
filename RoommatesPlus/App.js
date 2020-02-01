@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import {openDatabase} from 'react-native-sqlite-storage';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import * as SQLite from 'expo-sqlite';
 import Login from './scripts/Login';
+import CreateAccount from './scripts/CreateAccount';
 
 export default class App extends Component {
 
-  
-
   // front end render input fields and button
   render(){
-    return (
-      <View style = {styles.container}>
-          <Login/>
-      </View>
-    
-    );
+    return <ScreenContainer/>;
   }
-
-   
 }   
 
 // styles
@@ -37,3 +31,10 @@ const styles = StyleSheet.create({
     borderWidth: 1
   }
 });
+
+const AppNavigator = createStackNavigator({
+  LoginScreen: Login,
+  CrtAccountScreen: CreateAccount,
+});
+
+const ScreenContainer= createAppContainer(AppNavigator);
