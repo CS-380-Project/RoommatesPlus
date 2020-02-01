@@ -38,3 +38,4 @@ const AppNavigator = createStackNavigator({
 });
 
 const ScreenContainer= createAppContainer(AppNavigator);
+
