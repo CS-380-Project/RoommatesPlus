@@ -1,88 +1,41 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button, Alert, AppRegistry, SafeAreaView } from 'react-native';
-import Constants from 'expo-constants';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import {openDatabase} from 'react-native-sqlite-storage';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import * as SQLite from 'expo-sqlite';
+import Login from './scripts/Login';
+import CreateAccount from './scripts/CreateAccount';
 
+export default class App extends Component {
 
+  // front end render input fields and button
+  render(){
+    return <ScreenContainer/>;
+  }
+}   
 
-
-export default function App() {
-  
-  return (
-
-   <SafeAreaView style={styles.header}>
-    <View>
-      <Text style ={styles.headline}>Roommates</Text>
-    </View>
-    <View
-  style={{
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-  }}
-/>
-
-<Button
-          title="Create Household"
-          
-          onPress={() => Alert.alert('links to page for create household')}
-        />
-
-<Button
-          title="Join Household"
-          
-          onPress={() => Alert.alert('links to page for join household')}
-        />
-<View
-  style={{
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    marginTop: 650,
-  }}
-/>
-
-
-<Text style ={styles.footer}>Roommates</Text>
-   </SafeAreaView>   
-  );
-}
-
-class Footer {
-
-}
-
+// styles
 const styles = StyleSheet.create({
-  headline: {
-    textAlign: 'center',
-  alignItems: 'center',
-    fontWeight: 'bold',
-    fontSize: 24,
-marginTop: 10,
-   // width: 200,
-   //backgroundColor: 'green',
-   justifyContent: 'center'
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 
-},
-container:{
-  textAlign: 'left',
-  //alignItems: 'center',
-    fontWeight: 'bold',
-    fontSize: 24,
-marginTop: 100,
-   // width: 200,
-   //backgroundColor: 'green',
-   justifyContent: 'center'
-},
-footer:{
-  textAlign: 'center',
-  //alignItems: 'center',
-    fontWeight: 'bold',
-    fontSize: 24,
-marginTop: 0,
-   // width: 200,
-   //backgroundColor: 'green',
-   justifyContent: 'center'
-
-},
-  
+  textInput: {
+    height: 40,
+    width: 120,
+    borderColor: 'gray',
+    borderWidth: 1
+  }
 });
 
+const AppNavigator = createStackNavigator({
+  LoginScreen: Login,
+  CrtAccountScreen: CreateAccount,
+});
+
+const ScreenContainer= createAppContainer(AppNavigator);
 
