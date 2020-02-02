@@ -2,24 +2,11 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Alert, AppRegistry, SafeAreaView } from 'react-native';
 import Constants from 'expo-constants';
 
-
-
 export default class Dashboard extends Component {
 render(){
   return (
 
    <SafeAreaView style={styles.header}>
-    <View>
-      <Text style ={styles.headline}>Roommates</Text>
-    </View>
-    
-    <View
-  style={{
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-  }}
-/>
-
 <Button
           title="Create Household"
           
@@ -31,6 +18,7 @@ render(){
           
           onPress={() => Alert.alert('links to page for join household')}
         />
+        
 <View
   style={{
     borderBottomColor: 'black',
@@ -38,7 +26,6 @@ render(){
     marginTop: 650,
   }}
 />
-
 
 <Text style ={styles.footer}>Roommates</Text>
    </SafeAreaView>   
@@ -79,5 +66,4 @@ marginTop: 0,
    justifyContent: 'center'
 
 },
-  
 });

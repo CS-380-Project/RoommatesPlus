@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  screenDashboard: Dashboard,
   LoginScreen: Login,
   CrtAccountScreen: CreateAccount,
+  Roommates: Dashboard,
+
 });
 
 const ScreenContainer= createAppContainer(AppNavigator);

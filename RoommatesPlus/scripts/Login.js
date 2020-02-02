@@ -63,6 +63,8 @@ export default class Login extends Component {
         <Button title = "Login" onPress = {this.insert.bind(this, this.state.email, this.state.password)}/>
         <Button title = "Create Account" onPress = {() => this.props.navigation.navigate('CrtAccountScreen')}/>
 
+        <Button title = "Go To Dashboard" onPress = {() => this.props.navigation.navigate('Roommates')}/>
+
         <Text>Email retrieved from state: {this.state.email}</Text>
         <Text>Password retrieved from state: {this.state.password}</Text>
        
