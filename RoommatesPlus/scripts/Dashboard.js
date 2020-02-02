@@ -1,25 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Alert, AppRegistry, SafeAreaView } from 'react-native';
 import Constants from 'expo-constants';
 
-
-
-
-export default function App() {
-  
+export default class Dashboard extends Component {
+render(){
   return (
 
    <SafeAreaView style={styles.header}>
-    <View>
-      <Text style ={styles.headline}>Roommates</Text>
-    </View>
-    <View
-  style={{
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-  }}
-/>
-
 <Button
           title="Create Household"
           
@@ -31,6 +18,7 @@ export default function App() {
           
           onPress={() => Alert.alert('links to page for join household')}
         />
+        
 <View
   style={{
     borderBottomColor: 'black',
@@ -39,14 +27,10 @@ export default function App() {
   }}
 />
 
-
 <Text style ={styles.footer}>Roommates</Text>
    </SafeAreaView>   
   );
 }
-
-class Footer {
-
 }
 
 const styles = StyleSheet.create({
@@ -82,5 +66,4 @@ marginTop: 0,
    justifyContent: 'center'
 
 },
-  
 });
