@@ -7,6 +7,7 @@ import * as SQLite from 'expo-sqlite';
 import Login from './scripts/Login';
 import CreateAccount from './scripts/CreateAccount';
 import Dashboard from './scripts/Dashboard';
+import CreateHouseHold from './scripts/CreateHouseHold';
 
 export default class App extends Component {
 
@@ -36,9 +37,9 @@ const styles = StyleSheet.create({
 
 const AppNavigator = createStackNavigator({
   LoginScreen: Login,
-  CrtAccountScreen: CreateAccount,
   Roommates: Dashboard,
-
+  CrtAccountScreen: CreateAccount,
+  House: CreateHouseHold
 });
 
 const ScreenContainer= createAppContainer(AppNavigator);

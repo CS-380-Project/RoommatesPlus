@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Alert, AppRegistry, SafeAreaView } from 'react-native';
 import Constants from 'expo-constants';
-
+import { Appbar } from 'react-native-paper';
 export default class Dashboard extends Component {
 render(){
   return (
 
-   <SafeAreaView style={styles.header}>
-<Button
-          title="Create Household"
+   <SafeAreaView style>
           
-          onPress={() => Alert.alert('links to page for create household')}
+           <Appbar style={styles.bottom}>
+        <Appbar.Action icon="house" onPress = {() => this.props.navigation.navigate('House')} />
+        <Appbar.Action icon="profile" onPress = {() => this.props.navigation.navigate('House')} />
+        <Appbar.Action icon="settings" onPress = {() => this.props.navigation.navigate('House')} />
+
+      </Appbar>
+
+<Button
+          title="Create_Household"
+          
+          onPress = {() => this.props.navigation.navigate('House')}
         />
 
 <Button
@@ -18,52 +26,24 @@ render(){
           
           onPress={() => Alert.alert('links to page for join household')}
         />
-        
+
 <View
   style={{
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    marginTop: 650,
+    marginTop: 700,
   }}
 />
-
-<Text style ={styles.footer}>Roommates</Text>
    </SafeAreaView>   
   );
 }
+
 }
 
 const styles = StyleSheet.create({
-  headline: {
-    textAlign: 'center',
-  alignItems: 'center',
-    fontWeight: 'bold',
-    fontSize: 24,
-marginTop: 10,
-   // width: 200,
-   //backgroundColor: 'green',
-   justifyContent: 'center'
-
-},
-container:{
-  textAlign: 'left',
-  //alignItems: 'center',
-    fontWeight: 'bold',
-    fontSize: 24,
-marginTop: 100,
-   // width: 200,
-   //backgroundColor: 'green',
-   justifyContent: 'center'
-},
-footer:{
-  textAlign: 'center',
-  //alignItems: 'center',
-    fontWeight: 'bold',
-    fontSize: 24,
-marginTop: 0,
-   // width: 200,
-   //backgroundColor: 'green',
-   justifyContent: 'center'
-
-},
+  bottom: {
+    justifyContent: 'center',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
 });
