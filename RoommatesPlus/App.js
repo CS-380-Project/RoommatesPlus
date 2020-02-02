@@ -6,12 +6,14 @@ import {createStackNavigator} from 'react-navigation-stack';
 import * as SQLite from 'expo-sqlite';
 import Login from './scripts/Login';
 import CreateAccount from './scripts/CreateAccount';
+import Dashboard from './scripts/Dashboard';
 
 export default class App extends Component {
 
   // front end render input fields and button
   render(){
     return <ScreenContainer/>;
+
   }
 }   
 
@@ -33,6 +35,7 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
+  screenDashboard: Dashboard,
   LoginScreen: Login,
   CrtAccountScreen: CreateAccount,
 });

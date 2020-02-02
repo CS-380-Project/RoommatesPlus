@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Alert, AppRegistry, SafeAreaView } from 'react-native';
 import Constants from 'expo-constants';
 
 
 
-
-export default function App() {
-  
+export default class Dashboard extends Component {
+render(){
   return (
 
    <SafeAreaView style={styles.header}>
     <View>
       <Text style ={styles.headline}>Roommates</Text>
     </View>
+    
     <View
   style={{
     borderBottomColor: 'black',
@@ -44,9 +44,6 @@ export default function App() {
    </SafeAreaView>   
   );
 }
-
-class Footer {
-
 }
 
 const styles = StyleSheet.create({
