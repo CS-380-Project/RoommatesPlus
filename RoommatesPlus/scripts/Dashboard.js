@@ -1,49 +1,76 @@
+<<<<<<< HEAD
+import * as React from 'react';
+import { BottomNavigation, Text } from 'react-native-paper';
+
+const ProfileRoute = () => <Text>Profile</Text>;
+
+
+const HouseHoldRoute = () => <Text>HouseHold</Text>;
+
+const SettingRoute = () => <Text>Settings</Text>;
+
+export default class MyComponent extends React.Component {
+  state = {
+    index: 0,
+    routes: [
+      { key: 'profile', title: 'Profile', icon: 'account' },
+      { key: 'house', title: 'Household', icon: 'houzz' },
+      { key: 'settings', title: 'Settings', icon: 'settings' },
+    ],
+  };
+
+  _handleIndexChange = index => this.setState({ index });
+
+  _renderScene = BottomNavigation.SceneMap({
+    profile: ProfileRoute,
+    house: HouseHoldRoute,
+    settings: SettingRoute,
+  });
+
+  render() {
+    return (
+      <BottomNavigation
+        navigationState={this.state}
+        onIndexChange={this._handleIndexChange}
+        renderScene={this._renderScene}
+      />
+    );
+  }
+}
+=======
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Alert, AppRegistry, SafeAreaView } from 'react-native';
+import { styles } from '../style/styles';
+import { Text, View, Button, Alert, SafeAreaView, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
-import { Appbar } from 'react-native-paper';
+
 export default class Dashboard extends Component {
 render(){
   return (
 
-   <SafeAreaView style>
-          
-           <Appbar style={styles.bottom}>
-        <Appbar.Action icon="house" onPress = {() => this.props.navigation.navigate('House')} />
-        <Appbar.Action icon="profile" onPress = {() => this.props.navigation.navigate('House')} />
-        <Appbar.Action icon="settings" onPress = {() => this.props.navigation.navigate('House')} />
+   <View style={styles.header}>
+     
+     <TouchableOpacity style = {styles.button}
+     onPress = {() => this.props.navigation.navigate('CrtHsHld')}>
+       <Text style = {styles.buttonText}>Create Household</Text>
+     </TouchableOpacity>
+     
+     <TouchableOpacity style = {styles.button} 
+     onPress = {() => this.props.navigation.navigate('JnHsHld')}>
+       <Text style = {styles.buttonText}>Join Household</Text>
+     </TouchableOpacity>
 
-      </Appbar>
+     <View
+       style={{
+         borderBottomColor: 'black',
+         borderBottomWidth: 1,
+         marginTop: 650,
+       }}
+     />
 
-<Button
-          title="Create_Household"
-          
-          onPress = {() => this.props.navigation.navigate('House')}
-        />
-
-<Button
-          title="Join Household"
-          
-          onPress={() => Alert.alert('links to page for join household')}
-        />
-
-<View
-  style={{
-    marginTop: 700,
-  }}
-/>
-   </SafeAreaView>   
+     <Text style ={styles.footer}>Roommates</Text>
+   </View>   
   );
 }
-
 }
 
-const styles = StyleSheet.create({
-  bottom: {
-    justifyContent: 'center',
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-});
+>>>>>>> dc397edf9490cf29bec9c0eeded6484f41f57735
