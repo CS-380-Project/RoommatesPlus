@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
+import { styles } from '../style/styles';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import {openDatabase} from 'react-native-sqlite-storage';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -55,15 +56,25 @@ export default class Login extends Component {
             onChangeText={(email) => this.setState({email})}
             value={this.state.email}/>
 
-        <Text>Password</Text>
+        <Text style={{marginBottom: 5, marginTop: 15}}>Password</Text>
 
         <TextInput  secureTextEntry style = {styles.textInput} placeholder = "enter password"  onChangeText={(password) => this.setState({password})}
             value={this.state.password}/>
-
-        <Button title = "Login" onPress = {this.insert.bind(this, this.state.email, this.state.password)}/>
-        <Button title = "Create Account" onPress = {() => this.props.navigation.navigate('CrtAccountScreen')}/>
-
-        <Button title = "Go To Dashboard" onPress = {() => this.props.navigation.navigate('Roommates')}/>
+        
+        <TouchableOpacity onPress = {this.insert.bind(this, this.state.email, this.state.password)}
+          style = {styles.button}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+       
+        <TouchableOpacity onPress = {() => this.props.navigation.navigate('CrtAccountScreen')}
+          style = {styles.button}>
+          <Text style={styles.buttonText}>Create Account</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity onPress = {() => this.props.navigation.navigate('Roommates')}
+          style = {styles.button}>
+          <Text style={styles.buttonText}>Go To Dashboard</Text>
+        </TouchableOpacity>
 
         <Text>Email retrieved from state: {this.state.email}</Text>
         <Text>Password retrieved from state: {this.state.password}</Text>
@@ -73,20 +84,4 @@ export default class Login extends Component {
   }
 }   
 
-// styles
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  textInput: {
-    height: 40,
-    width: 120,
-    borderColor: 'gray',
-    borderWidth: 1
-  }
-});
 
