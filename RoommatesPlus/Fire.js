@@ -5,7 +5,7 @@ class Fire {
     constructor() {
         this.init();
         this.observeAuth();
-        //const db = firebase.firestore();    
+       // const db = firebase.firestore();    
     }
     
     /*user = firebase.auth().currentUser;

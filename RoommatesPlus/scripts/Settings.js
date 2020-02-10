@@ -4,8 +4,6 @@ import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Fire from '../Fire';
 
-const {navigation} = this.props;
-
 export default class Settings extends Component {
     render(){
         return(
@@ -13,7 +11,7 @@ export default class Settings extends Component {
                 <Text>Settings</Text>
                 
                 <TouchableOpacity style={styles.button}
-                onPress={() => {Fire.shared.signOut(); this.props.navigation.navigate('LoginScreen');}}>
+                onPress={() => Fire.shared.signOut() }>
                     <Text style={styles.buttonText}>Log out</Text>
                 </TouchableOpacity>
 
