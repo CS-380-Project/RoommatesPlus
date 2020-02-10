@@ -6,10 +6,20 @@ import Constants from 'expo-constants';
 
 const ProfileRoute = () => <Text>Profile</Text>;
 
-const HouseHoldRoute = () => <TouchableOpacity style = {styles.button}
+const HouseHoldRoute = () =>
+<View>
+<TouchableOpacity style = {styles.button}
 onPress = {() => this.props.navigation.navigate('CrtHsHld')}>
   <Text style = {styles.buttonText}>Create Household</Text>
-</TouchableOpacity>;
+</TouchableOpacity> 
+
+<TouchableOpacity style = {styles.button}
+onPress = {() => this.props.navigation.navigate('JnHsHld')}>
+  <Text style = {styles.buttonText}>Join Household</Text>
+</TouchableOpacity> 
+
+</View>
+
 
 const SettingRoute = () => <Text>Settings</Text>;
 
