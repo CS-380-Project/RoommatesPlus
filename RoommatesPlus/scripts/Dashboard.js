@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { styles } from '../style/styles';
-import { Text, View, Button, Alert, SafeAreaView, TouchableOpacity, } from 'react-native';
 import { BottomNavigation} from 'react-native-paper';
-import Constants from 'expo-constants';
 import CreateHouseHold from './CreateHouseHold';
 import Profile from './Profile';
 import Settings from './Settings';
@@ -22,7 +20,10 @@ export default class Dashboard extends Component {
   };
 
   _handleIndexChange = index => this.setState({ index });
-
+  
+  printIndex(){
+    console.log(index);
+  }
   _renderScene = BottomNavigation.SceneMap({
     profile: ProfileRoute,
     house: HouseHoldRoute,
@@ -30,13 +31,13 @@ export default class Dashboard extends Component {
   });
 
   render(){
-  return (
+    return (
 
-    <BottomNavigation
-      navigationState={this.state}
-      onIndexChange={this._handleIndexChange}
-      renderScene={this._renderScene}
-    />   
+      <BottomNavigation
+        navigationState={this.state}
+        onIndexChange={this._handleIndexChange}
+        renderScene={this._renderScene}
+      />   
     );
   }
 }

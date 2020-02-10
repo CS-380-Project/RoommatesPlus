@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
-import {openDatabase} from 'react-native-sqlite-storage';
+import { StyleSheet } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import * as SQLite from 'expo-sqlite';
 import Login from './scripts/Login';
 import CreateAccount from './scripts/CreateAccount';
 import Dashboard from './scripts/Dashboard';
 import CreateHouseHold from './scripts/CreateHouseHold';
 import JoinHouseHold from './scripts/JoinHouseHold';
+import Settings from './scripts/Settings';
 
 export default class App extends Component {
 
   // front end render input fields and button
   render(){
     return <ScreenContainer/>;
-
   }
 }   
 
@@ -43,6 +41,8 @@ const AppNavigator = createStackNavigator({
   House: CreateHouseHold,
   JnHsHld: JoinHouseHold,
   CrtHsHld: CreateHouseHold,
+  SettingView: Settings,
+  LogoutScreen: Login,
 });
 
 const ScreenContainer= createAppContainer(AppNavigator);

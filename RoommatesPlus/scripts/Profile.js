@@ -8,6 +8,10 @@ export default class Profile extends Component {
         return(
             <View style = {styles.container}>
                 <Text>Profile</Text>
+                <Text>Name: </Text>
+                <Text>Gender: </Text>
+                <Text>Phone Number: </Text>
+                <Text>Email: </Text>
             </View>
         );
     }

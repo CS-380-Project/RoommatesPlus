@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { styles } from '../style/styles';
 import { Text, View, TextInput } from 'react-native';
-import {openDatabase} from 'react-native-sqlite-storage';
-import * as SQLite from 'expo-sqlite'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Fire from '../Fire';
 
-const db = SQLite.openDatabase("UserDatabase.db");
 
 export default class CreateAccount extends Component {
     state = {
@@ -27,12 +26,25 @@ export default class CreateAccount extends Component {
                 <TextInput style = {styles.textInput} placeholder = "Phone Number"/>
 
                 <Text>Email</Text>
-                <TextInput style = {styles.textInput} placeholder = "Email Address"/>
+                <TextInput style = {styles.textInput} placeholder = "Email Address"
+                value={this.state.email}
+                 onChangeText={(email) => this.setState({email})}
+                 />
 
                 <Text>Password</Text>
-                <TextInput style = {styles.textInput} placeholder = "Password"/>
+                <TextInput style = {styles.textInput} placeholder = "Password" 
+                value={this.state.password}
+                onChangeText={(password) => this.setState({password})}
+                />
+                
                 <Text>Confirm Password</Text>
                 <TextInput style = {styles.textInput} placeholder = "Confirm Password"/>
+
+                <TouchableOpacity style={styles.button} 
+                onPress = {() => {Fire.shared.createUser(this.state.email, this.state.password); this.props.navigation.navigate('Roommates');}}>
+                    <Text style={styles.buttonText}>Submit</Text>
+                </TouchableOpacity>
+
             </View>
         );
     }
