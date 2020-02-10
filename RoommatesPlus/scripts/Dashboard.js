@@ -3,15 +3,13 @@ import { styles } from '../style/styles';
 import { Text, View, Button, Alert, SafeAreaView, TouchableOpacity, } from 'react-native';
 import { BottomNavigation} from 'react-native-paper';
 import Constants from 'expo-constants';
+import CreateHouseHold from './CreateHouseHold';
+import Profile from './Profile';
+import Settings from './Settings';
 
-const ProfileRoute = () => <Text>Profile</Text>;
-
-const HouseHoldRoute = () => <TouchableOpacity style = {styles.button}
-onPress = {() => this.props.navigation.navigate('CrtHsHld')}>
-  <Text style = {styles.buttonText}>Create Household</Text>
-</TouchableOpacity>;
-
-const SettingRoute = () => <Text>Settings</Text>;
+const ProfileRoute = Profile;
+const HouseHoldRoute = CreateHouseHold;
+const SettingRoute = Settings;
 
 export default class Dashboard extends Component {
   state = {
@@ -30,19 +28,15 @@ export default class Dashboard extends Component {
     house: HouseHoldRoute,
     settings: SettingRoute,
   });
+
   render(){
   return (
 
-            <BottomNavigation
-    navigationState={this.state}
-    onIndexChange={this._handleIndexChange}
-    renderScene={this._renderScene}
-  />
-
-
-
- 
-   
-  );
-}
+    <BottomNavigation
+      navigationState={this.state}
+      onIndexChange={this._handleIndexChange}
+      renderScene={this._renderScene}
+    />   
+    );
+  }
 }

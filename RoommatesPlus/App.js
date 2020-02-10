@@ -8,6 +8,7 @@ import Login from './scripts/Login';
 import CreateAccount from './scripts/CreateAccount';
 import Dashboard from './scripts/Dashboard';
 import CreateHouseHold from './scripts/CreateHouseHold';
+import JoinHouseHold from './scripts/JoinHouseHold';
 
 export default class App extends Component {
 
@@ -39,7 +40,9 @@ const AppNavigator = createStackNavigator({
   LoginScreen: Login,
   Roommates: Dashboard,
   CrtAccountScreen: CreateAccount,
-  House: CreateHouseHold
+  House: CreateHouseHold,
+  JnHsHld: JoinHouseHold,
+  CrtHsHld: CreateHouseHold,
 });
 
 const ScreenContainer= createAppContainer(AppNavigator);
