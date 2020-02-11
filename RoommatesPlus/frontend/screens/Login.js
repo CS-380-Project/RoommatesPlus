@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { styles } from '../style/styles';
+import { styles } from '../styles/style';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
-import Fire from '../Fire';
+import Fire from '../../backend/Fire';
 
 
 export default class Login extends Component {

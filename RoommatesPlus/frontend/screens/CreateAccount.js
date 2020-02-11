@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { styles } from '../style/styles';
+import { styles } from '../styles/style';
 import { Text, View, TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Fire from '../Fire';
+import Fire from '../../backend/Fire';
 
 
 export default class CreateAccount extends Component {

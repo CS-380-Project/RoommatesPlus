@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { styles } from '../style/styles';
+import { styles } from '../styles/style';
 import { BottomNavigation} from 'react-native-paper';
 import CreateHouseHold from './CreateHouseHold';
 import Profile from './Profile';

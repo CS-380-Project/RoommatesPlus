@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import Login from './scripts/Login';
-import CreateAccount from './scripts/CreateAccount';
-import Dashboard from './scripts/Dashboard';
-import CreateHouseHold from './scripts/CreateHouseHold';
-import JoinHouseHold from './scripts/JoinHouseHold';
-import Settings from './scripts/Settings';
+import Login from './frontend/screens/Login';
+import CreateAccount from './frontend/screens/CreateAccount';
+import Dashboard from './frontend/screens/Dashboard';
+import CreateHouseHold from './frontend/screens/CreateHouseHold';
+import JoinHouseHold from './frontend/screens/JoinHouseHold';
+import Settings from './frontend/screens/Settings';
 
 export default class App extends Component {
 
