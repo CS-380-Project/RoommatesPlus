@@ -1,19 +1,22 @@
 import firebase from 'firebase'; 
 import { Alert } from 'react-native';
+import firestore from 'firebase/firestore';
 
 class Fire {
+
     constructor() {
         this.init();
         this.observeAuth();
-       // const db = firebase.firestore();    
+       // const db = firebase.firestore();   
     }
     
     /*user = firebase.auth().currentUser;
-    name = ''; 
+    name = ''; s
     email = ''; 
     photoURL = ''; 
     uid = ''; 
     emailVerified = '';*/
+    
 
     init = () => firebase.initializeApp({
         apiKey: "AIzaSyA4RsDJumMfFG6BGnZv-mdNpSDEq8QbdC8",
@@ -29,6 +32,7 @@ class Fire {
     
     observeAuth = () => firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
 
+
     onAuthStateChanged = user => {
         if (!user) {
             try { 
@@ -40,7 +44,7 @@ class Fire {
     };   
 
     // sign-up
-    createUser(email, password){
+    createUser(firstName, lastName, gender, phoneNumber, houseID, email){
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(() => console.log('success!')) 
         .catch(function(error){
@@ -48,8 +52,19 @@ class Fire {
             errorMessage = error.message;
             console.log('login failed')
         }); 
-    }
+        
+        const ref = firebase.firestore().collection('users')
+            ref.add({
+               first_name: firstName,
+               gender: gender,
+               houseID: houseID,
+               last_name: lastName,
+               phone: phoneNumber,
+               user_name: email
 
+            });
+    
+    }
 
     signIn(email, password){
         firebase.auth().signInWithEmailAndPassword(email, password).then(
@@ -85,4 +100,5 @@ class Fire {
 }
 
 Fire.shared = new Fire();
+
 export default Fire;

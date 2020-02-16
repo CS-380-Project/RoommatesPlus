@@ -9,21 +9,31 @@ export default class CreateAccount extends Component {
     state = {
         email:'',
         password: '',
-        dataBaseContents: ''
+        firstName: '',
+        lastName: '',
+        gender: '',
+        phoneNumber: '',
+      //  fire: Fire.init(),
+        
     };
 
     render() {
         return (
             <View style = {styles.container}>
                 <Text>Name</Text>
-                <TextInput style = {styles.textInput} placeholder = "First Name"/>
-                <TextInput style = {styles.textInput} placeholder = "Last Name"/>
+                <TextInput style = {styles.textInput} placeholder = "First Name"   value={this.state.firstName}
+                 onChangeText={(firstName) => this.setState({firstName})}/>
+                <TextInput style = {styles.textInput} placeholder = "Last Name"   value={this.state.lastName}
+                 onChangeText={(lastName) => this.setState({lastName})}/>
+                
 
                 <Text>Gender</Text>
-                <TextInput style = {styles.textInput} placeholder = "Gender"/>
+                <TextInput style = {styles.textInput} placeholder = "Gender"value={this.state.gender}
+                onChangeText={(gender) => this.setState({gender})}/>
 
                 <Text>Phone Number</Text>
-                <TextInput style = {styles.textInput} placeholder = "Phone Number"/>
+                <TextInput style = {styles.textInput} placeholder = "Phone Number" value={this.state.phoneNumber}
+                onChangeText={(phoneNumber) => this.setState({phoneNumber})}/>
 
                 <Text>Email</Text>
                 <TextInput style = {styles.textInput} placeholder = "Email Address"
@@ -41,7 +51,8 @@ export default class CreateAccount extends Component {
                 <TextInput style = {styles.textInput} placeholder = "Confirm Password"/>
 
                 <TouchableOpacity style={styles.button} 
-                onPress = {() => {Fire.shared.createUser(this.state.email, this.state.password); this.props.navigation.navigate('Roommates');}}>
+                onPress = {() => {Fire.shared.createUser(this.state.firstName,
+                 this.state.lastName, this.state.gender, this.state.phoneNumber, null, this.state.email);  this.props.navigation.navigate('Roommates');}}>
                     <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
 
