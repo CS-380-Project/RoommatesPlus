@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { styles } from '../styles/style';
-import { BottomNavigation} from 'react-native-paper';
+import {BottomNavigation} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
 import CreateHouseHold from './CreateHouseHold';
 import Profile from './Profile';
 import Settings from './Settings';
@@ -32,12 +33,10 @@ export default class Dashboard extends Component {
 
   render(){
     return (
-
       <BottomNavigation
         navigationState={this.state}
         onIndexChange={this._handleIndexChange}
-        renderScene={this._renderScene}
-      />   
+        renderScene={this._renderScene}/>   
     );
   }
 }

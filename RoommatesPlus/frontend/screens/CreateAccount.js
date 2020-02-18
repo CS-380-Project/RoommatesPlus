@@ -1,61 +1,57 @@
 import React, { Component } from 'react';
 import { styles } from '../styles/style';
-import { Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Fire from '../../backend/Fire';
+import firebase from 'firebase'; 
+import firestore from 'firebase/firestore';
 
 
 export default class CreateAccount extends Component {
     state = {
         email:'',
         password: '',
-        firstName: '',
-        lastName: '',
-        gender: '',
-        phoneNumber: '',
-      //  fire: Fire.init(),
-        
+        confirm_password: '',
+        errorMessage: null
+    };
+
+    onSubmitButtonPress = () => {
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(userCredentials => {
+            return userCredentials.user.updateProfile({
+                displayName: this.state.firstName
+            });
+        })
+        .then(() => {
+            console.log('Account created!')
+            this.props.navigation.navigate('UserInfo')
+        })
+        .catch(error => {
+            Alert.alert(error.message)
+            console.log(error.message)
+        });
     };
 
     render() {
         return (
             <View style = {styles.container}>
-                <Text>Name</Text>
-                <TextInput style = {styles.textInput} placeholder = "First Name"   value={this.state.firstName}
-                 onChangeText={(firstName) => this.setState({firstName})}/>
-                <TextInput style = {styles.textInput} placeholder = "Last Name"   value={this.state.lastName}
-                 onChangeText={(lastName) => this.setState({lastName})}/>
-                
-
-                <Text>Gender</Text>
-                <TextInput style = {styles.textInput} placeholder = "Gender"value={this.state.gender}
-                onChangeText={(gender) => this.setState({gender})}/>
-
-                <Text>Phone Number</Text>
-                <TextInput style = {styles.textInput} placeholder = "Phone Number" value={this.state.phoneNumber}
-                onChangeText={(phoneNumber) => this.setState({phoneNumber})}/>
-
                 <Text>Email</Text>
                 <TextInput style = {styles.textInput} placeholder = "Email Address"
                 value={this.state.email}
-                 onChangeText={(email) => this.setState({email})}
-                 />
+                 onChangeText={(email) => this.setState({email})}/>
 
                 <Text>Password</Text>
                 <TextInput style = {styles.textInput} placeholder = "Password" 
                 value={this.state.password}
-                onChangeText={(password) => this.setState({password})}
-                />
+                onChangeText={(password) => this.setState({password})}/>
                 
                 <Text>Confirm Password</Text>
                 <TextInput style = {styles.textInput} placeholder = "Confirm Password"/>
 
                 <TouchableOpacity style={styles.button} 
-                onPress = {() => {Fire.shared.createUser(this.state.firstName,
-                 this.state.lastName, this.state.gender, this.state.phoneNumber, null, this.state.email);  this.props.navigation.navigate('Roommates');}}>
-                    <Text style={styles.buttonText}>Submit</Text>
+                onPress = {this.onSubmitButtonPress}>
+                <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
-
             </View>
         );
     }

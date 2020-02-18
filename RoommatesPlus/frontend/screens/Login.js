@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { styles } from '../styles/style';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Fire from '../../backend/Fire';
+import firebase from 'firebase';
+import { Alert } from 'react-native';
 
 
 export default class Login extends Component {
@@ -9,6 +11,17 @@ export default class Login extends Component {
     email:'',
     password: '',
     dataBaseContents: ''
+  };
+  
+  onLoginButtonPress = () => {
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+            this.props.navigation.navigate('Roommates')
+            console.log('login successful')
+        }).catch((error) => {
+            Alert.alert('Invalid email or password!')
+            console.log('Login Failed')
+        });
   };
 
   // front end render input fields and button
@@ -26,7 +39,7 @@ export default class Login extends Component {
         <TextInput  secureTextEntry style = {styles.textInput} placeholder = "enter password"  onChangeText={(password) => this.setState({password})}
             value={this.state.password}/>
         
-        <TouchableOpacity onPress = {() => {Fire.shared.signIn(this.state.email, this.state.password); this.props.navigation.navigate('Roommates');}}
+        <TouchableOpacity onPress = {this.onLoginButtonPress}
           style = {styles.button}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>

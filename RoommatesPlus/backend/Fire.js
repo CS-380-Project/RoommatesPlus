@@ -1,12 +1,13 @@
 import firebase from 'firebase'; 
 import { Alert } from 'react-native';
 import firestore from 'firebase/firestore';
+import {useNavigation} from '@react-navigation/native';
 
 class Fire {
 
     constructor() {
         this.init();
-        this.observeAuth();
+       // this.observeAuth();
        // const db = firebase.firestore();   
     }
     
@@ -29,57 +30,64 @@ class Fire {
         measurementId: "G-B4PHE4YGZK"
     });
 
-    
-    observeAuth = () => firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
+    // observeAuth() {
+    //     firebase.auth().onAuthStateChanged(function(user) {
+    //         if (user) {
+    //             return user;
+    //         } else {
+    //             console.log('failed')
+    //            return null;
+    //         }
+    //     });
+    // }
+    // onAuthStateChanged = user => {
+    //     if (!user) {
+    //         try { 
+    //             firebase.auth().signInAnonymously();
+    //         } catch ({ message }) {
+    //             alert(message);
+    //         }
+    //     }           
+    // };   
 
+    // // sign-up
+    // createUser(firstName, lastName, gender, phoneNumber, houseID, email, password){
 
-    onAuthStateChanged = user => {
-        if (!user) {
-            try { 
-                firebase.auth().signInAnonymously();
-            } catch ({ message }) {
-                alert(message);
-            }
-        }           
-    };   
+    //     firebase.auth().createUserWithEmailAndPassword(email, password)
+    //     .then(() => {
+    //         firebase.firestore().collection('users').add({
+    //             first_name: firstName,
+    //             gender: gender,
+    //             houseID: houseID,
+    //             last_name: lastName,
+    //             phone: phoneNumber,
+    //             user_name: email,
+    //         });
 
-    // sign-up
-    createUser(firstName, lastName, gender, phoneNumber, houseID, email){
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => console.log('success!')) 
-        .catch(function(error){
-            errorCode = error.code;
-            errorMessage = error.message;
-            console.log('login failed')
-        }); 
-        
-        const ref = firebase.firestore().collection('users')
-            ref.add({
-               first_name: firstName,
-               gender: gender,
-               houseID: houseID,
-               last_name: lastName,
-               phone: phoneNumber,
-               user_name: email
+    //         console.log('create account successful')
+    //     }) 
+    //     .catch(function(error){
+    //         console.log('login failed')
+    //     }); 
+    // }
 
-            });
-    
-    }
-
-    signIn(email, password){
-        firebase.auth().signInWithEmailAndPassword(email, password).then(
-            () => console.log('login successful')
-        ).catch(function(error){
-            errorCode = error.code;
-            errorMessage = error.message;
-            console.log('login failed')
-        });
-    }
+    // signIn(email, password){
+    //     firebase.auth().signInWithEmailAndPassword(email, password)
+    //     .then(() => {
+    //         console.log('login successful')
+    //     }).catch(function(error){
+    //         errorCode = error.code;
+    //         errorMessage = error.message;
+    //         console.log('login failed')
+    //     });
+    // }
 
     signOut(){
-        firebase.auth().signOut().then(function(){
+        firebase.auth().signOut()
+        .then(() =>{
             console.log('Sign out successful')
-        }).catch(function(error){
+            navigation.navigate('LoginScreen')
+        }).catch((error) => {
             errorCode = error.code;
             errorMessage = error.message;
             console.log('Sign out error')
