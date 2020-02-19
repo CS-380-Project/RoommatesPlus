@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import { Alert } from 'react-native';
 import firestore from 'firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
+import UserData from './UserData';
 
 class Fire {
 
@@ -30,16 +31,20 @@ class Fire {
         measurementId: "G-B4PHE4YGZK"
     });
 
-    // observeAuth() {
-    //     firebase.auth().onAuthStateChanged(function(user) {
-    //         if (user) {
-    //             return user;
-    //         } else {
-    //             console.log('failed')
-    //            return null;
-    //         }
-    //     });
-    // }
+
+
+    observeAuth() {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                return user;
+            } else {
+                console.log('failed')
+               return null;
+            }
+        });
+    }
+
+
     // onAuthStateChanged = user => {
     //     if (!user) {
     //         try { 
@@ -83,6 +88,7 @@ class Fire {
     // }
 
     signOut(){
+
         firebase.auth().signOut()
         .then(() =>{
             console.log('Sign out successful')
@@ -92,10 +98,32 @@ class Fire {
             errorMessage = error.message;
             console.log('Sign out error')
         });
+       
     }
     
     get udi(){
         return firebase.auth().currentUser;
+
+    }
+
+    currentUserDoc(){
+        let userData 
+        let userRef = firebase.firestore().collection('users');
+        let query = userRef.where('email', '==', this.udi.email).get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.');
+                return;
+            }  
+            snapshot.forEach(doc => {
+                console.log(doc.id, '=>', doc.data());
+            //  userData = [doc.data().first_name, doc.data().last_name, doc.data().phone, doc.data().gender];
+                UserData.shared.updateUserData(doc.data().first_name, doc.data().last_name, doc.data().gender, doc.data().phone, this.udi.email);
+            })          
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        }); 
     }
 
     get ref(){

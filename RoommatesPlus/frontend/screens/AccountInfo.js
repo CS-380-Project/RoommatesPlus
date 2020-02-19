@@ -4,6 +4,7 @@ import { Text, View, TextInput, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from 'firebase';
 import firestore from 'firebase/firestore';
+import Fire from '../../backend/Fire';
 
 export default class AccountInfo extends Component {
     state = {
@@ -16,6 +17,7 @@ export default class AccountInfo extends Component {
 
     onUserInfoSubmitPress = () => {
         firebase.firestore().collection('users').add({
+            email: Fire.shared.udi.email,
             first_name: this.state.firstName,
             gender: this.state.gender,
             last_name: this.state.lastName,
