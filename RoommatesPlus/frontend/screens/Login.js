@@ -49,7 +49,7 @@ export default class Login extends Component {
     value={this.state.password}/>
 
 
-<TouchableOpacity onPress = {() => {Fire.shared.signIn(this.state.email, this.state.password); this.props.navigation.navigate('Roommates');}}
+<TouchableOpacity onPress = {() => {this.onLoginButtonPress(); this.props.navigation.navigate('Roommates');}}
   style = {styles.button}>
   <Text style={styles.buttonText}>SIGN IN</Text>
 </TouchableOpacity>

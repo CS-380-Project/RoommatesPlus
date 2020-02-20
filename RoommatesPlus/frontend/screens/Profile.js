@@ -26,10 +26,10 @@ export default class Profile extends Component {
         return(
             <View style = {styles.container}>
                 <Text style={styles.headline}>Profile</Text>
-                <Text style={styles.headline}>Name: </Text>
-                <Text style={styles.headline}>Gender: </Text>
-                <Text style={styles.headline}>Phone Number: </Text>
-                <Text style={styles.headline}>Email: </Text>
+                <Text style={styles.headline}>Name: {UserData.shared.FirstName+ ' ' + UserData.shared.LastName}</Text>
+                <Text style={styles.headline}>Gender: {UserData.shared.Gender}</Text>
+                <Text style={styles.headline}>Phone Number: {UserData.shared.PhoneNumber}</Text>
+                <Text style={styles.headline}>Email: {UserData.shared.Email}</Text>
             </View>
         );
     }
