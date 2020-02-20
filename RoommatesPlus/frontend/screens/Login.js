@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { styles } from '../styles/style';
 import { Text, View, TextInput,StyleSheet,Dimensions, TouchableOpacity,Image} from 'react-native';
 import Fire from '../../backend/Fire';
+import firebase from 'firebase';
+import { Alert } from 'react-native';
 
 
 const {width,height} = Dimensions.get('window')
@@ -10,6 +12,17 @@ export default class Login extends Component {
     email:'',
     password: '',
     dataBaseContents: ''
+  };
+  
+  onLoginButtonPress = () => {
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+            this.props.navigation.navigate('Roommates')
+            console.log('login successful')
+        }).catch((error) => {
+            Alert.alert('Invalid email or password!')
+            console.log('Login Failed')
+        });
   };
 
   // front end render input fields and button

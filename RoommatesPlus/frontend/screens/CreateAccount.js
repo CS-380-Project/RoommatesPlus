@@ -1,15 +1,35 @@
 import React, { Component } from 'react';
 import { styles } from '../styles/style';
-import { Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Fire from '../../backend/Fire';
+import firebase from 'firebase'; 
+import firestore from 'firebase/firestore';
 
 
 export default class CreateAccount extends Component {
     state = {
         email:'',
         password: '',
-        dataBaseContents: ''
+        confirm_password: '',
+        errorMessage: null
+    };
+
+    onSubmitButtonPress = () => {
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(userCredentials => {
+            return userCredentials.user.updateProfile({
+                displayName: this.state.firstName
+            });
+        })
+        .then(() => {
+            console.log('Account created!')
+            this.props.navigation.navigate('UserInfo')
+        })
+        .catch(error => {
+            Alert.alert(error.message)
+            console.log(error.message)
+        });
     };
 
     render() {
@@ -20,21 +40,19 @@ export default class CreateAccount extends Component {
                 <Text style={styles.headline}>Email</Text>
                 <TextInput style = {styles.textInput} placeholder = "Email Address"
                 value={this.state.email}
-                 onChangeText={(email) => this.setState({email})}
-                 />
+                 onChangeText={(email) => this.setState({email})}/>
 
                 <Text style={styles.headline}>Password</Text>
                 <TextInput style = {styles.textInput} placeholder = "Password" 
                 value={this.state.password}
-                onChangeText={(password) => this.setState({password})}
-                />
+                onChangeText={(password) => this.setState({password})}/>
                 
                 <Text style={styles.headline}>Confirm Password</Text>
                 <TextInput style = {styles.textInput} placeholder = "Confirm Password"/>
 
                 <TouchableOpacity style={styles.button} 
-                onPress = {() => {Fire.shared.createUser(this.state.email, this.state.password); this.props.navigation.navigate('Roommates');}}>
-                    <Text style={styles.buttonText}>Submit</Text>
+                onPress = {this.onSubmitButtonPress}>
+                <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
 </View>
             </View>

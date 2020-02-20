@@ -8,6 +8,7 @@ import Dashboard from './frontend/screens/Dashboard';
 import CreateHouseHold from './frontend/screens/CreateHouseHold';
 import JoinHouseHold from './frontend/screens/JoinHouseHold';
 import Settings from './frontend/screens/Settings';
+import AccountInfo from './frontend/screens/AccountInfo';
 
 
 export default class App extends Component {
@@ -48,6 +49,7 @@ const AppNavigator = createStackNavigator({
   CrtHsHld: CreateHouseHold,
   SettingView: Settings,
   LogoutScreen: Login,
+  UserInfo: AccountInfo
 });
 
 const ScreenContainer= createAppContainer(AppNavigator);

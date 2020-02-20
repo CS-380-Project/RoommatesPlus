@@ -1,19 +1,24 @@
 import firebase from 'firebase'; 
 import { Alert } from 'react-native';
+import firestore from 'firebase/firestore';
+import {useNavigation} from '@react-navigation/native';
+import UserData from './UserData';
 
 class Fire {
+
     constructor() {
         this.init();
-        this.observeAuth();
-       // const db = firebase.firestore();    
+       // this.observeAuth();
+       // const db = firebase.firestore();   
     }
     
     /*user = firebase.auth().currentUser;
-    name = ''; 
+    name = ''; s
     email = ''; 
     photoURL = ''; 
     uid = ''; 
     emailVerified = '';*/
+    
 
     init = () => firebase.initializeApp({
         apiKey: "AIzaSyA4RsDJumMfFG6BGnZv-mdNpSDEq8QbdC8",
@@ -26,53 +31,99 @@ class Fire {
         measurementId: "G-B4PHE4YGZK"
     });
 
-    
-    observeAuth = () => firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
 
-    onAuthStateChanged = user => {
-        if (!user) {
-            try { 
-                firebase.auth().signInAnonymously();
-            } catch ({ message }) {
-                alert(message);
+
+    observeAuth() {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                return user;
+            } else {
+                console.log('failed')
+               return null;
             }
-        }           
-    };   
-
-    // sign-up
-    createUser(email, password){
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => console.log('success!')) 
-        .catch(function(error){
-            errorCode = error.code;
-            errorMessage = error.message;
-            console.log('login failed')
-        }); 
-    }
-
-
-    signIn(email, password){
-        firebase.auth().signInWithEmailAndPassword(email, password).then(
-            () => console.log('login successful')
-        ).catch(function(error){
-            errorCode = error.code;
-            errorMessage = error.message;
-            console.log('login failed')
         });
     }
 
+
+    // onAuthStateChanged = user => {
+    //     if (!user) {
+    //         try { 
+    //             firebase.auth().signInAnonymously();
+    //         } catch ({ message }) {
+    //             alert(message);
+    //         }
+    //     }           
+    // };   
+
+    // // sign-up
+    // createUser(firstName, lastName, gender, phoneNumber, houseID, email, password){
+
+    //     firebase.auth().createUserWithEmailAndPassword(email, password)
+    //     .then(() => {
+    //         firebase.firestore().collection('users').add({
+    //             first_name: firstName,
+    //             gender: gender,
+    //             houseID: houseID,
+    //             last_name: lastName,
+    //             phone: phoneNumber,
+    //             user_name: email,
+    //         });
+
+    //         console.log('create account successful')
+    //     }) 
+    //     .catch(function(error){
+    //         console.log('login failed')
+    //     }); 
+    // }
+
+    // signIn(email, password){
+    //     firebase.auth().signInWithEmailAndPassword(email, password)
+    //     .then(() => {
+    //         console.log('login successful')
+    //     }).catch(function(error){
+    //         errorCode = error.code;
+    //         errorMessage = error.message;
+    //         console.log('login failed')
+    //     });
+    // }
+
     signOut(){
-        firebase.auth().signOut().then(function(){
+
+        firebase.auth().signOut()
+        .then(() =>{
             console.log('Sign out successful')
-        }).catch(function(error){
+            navigation.navigate('LoginScreen')
+        }).catch((error) => {
             errorCode = error.code;
             errorMessage = error.message;
             console.log('Sign out error')
         });
+       
     }
     
     get udi(){
         return firebase.auth().currentUser;
+
+    }
+
+    currentUserDoc(){
+        let userData 
+        let userRef = firebase.firestore().collection('users');
+        let query = userRef.where('email', '==', this.udi.email).get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.');
+                return;
+            }  
+            snapshot.forEach(doc => {
+                console.log(doc.id, '=>', doc.data());
+            //  userData = [doc.data().first_name, doc.data().last_name, doc.data().phone, doc.data().gender];
+                UserData.shared.updateUserData(doc.data().first_name, doc.data().last_name, doc.data().gender, doc.data().phone, this.udi.email);
+            })          
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        }); 
     }
 
     get ref(){
@@ -85,4 +136,5 @@ class Fire {
 }
 
 Fire.shared = new Fire();
+
 export default Fire;
