@@ -9,11 +9,16 @@ import CreateHouseHold from './frontend/screens/CreateHouseHold';
 import JoinHouseHold from './frontend/screens/JoinHouseHold';
 import Settings from './frontend/screens/Settings';
 
+
 export default class App extends Component {
+
 
   // front end render input fields and button
   render(){
+    
+     
     return <ScreenContainer/>;
+    
   }
 }   
 
@@ -25,7 +30,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
+  
   textInput: {
     height: 40,
     width: 120,

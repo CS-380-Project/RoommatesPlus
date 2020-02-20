@@ -8,7 +8,7 @@ export default class Settings extends Component {
     render(){
         return(
             <View style = {styles.container}>
-                <Text>Settings</Text>
+                <Text style={styles.headline} >Settings</Text>
                 
                 <TouchableOpacity style={styles.button}
                 onPress={() => Fire.shared.signOut() }>

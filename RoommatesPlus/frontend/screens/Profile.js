@@ -7,11 +7,11 @@ export default class Profile extends Component {
     render(){
         return(
             <View style = {styles.container}>
-                <Text>Profile</Text>
-                <Text>Name: </Text>
-                <Text>Gender: </Text>
-                <Text>Phone Number: </Text>
-                <Text>Email: </Text>
+                <Text style={styles.headline}>Profile</Text>
+                <Text style={styles.headline}>Name: </Text>
+                <Text style={styles.headline}>Gender: </Text>
+                <Text style={styles.headline}>Phone Number: </Text>
+                <Text style={styles.headline}>Email: </Text>
             </View>
         );
     }

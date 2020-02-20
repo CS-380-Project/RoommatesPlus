@@ -1,0 +1,19 @@
+{
+  "name": "roommatesplus",
+  "version": "1.0.0",
+  "description": "Commit template\r ///////////////\r Summary name",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CS-380-Project/RoommatesPlus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CS-380-Project/RoommatesPlus/issues"
+  },
+  "homepage": "https://github.com/CS-380-Project/RoommatesPlus#readme"
+}

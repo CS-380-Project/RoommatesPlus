@@ -1,43 +1,52 @@
-import { StyleSheet } from 'react-native';
+ import { StyleSheet } from 'react-native';
 
 // styles
 export const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'white',
     flex: 1,
-    paddingHorizontal: 40,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'flex-end',
+    alignContent: 'center',
   },
-    
+  
   button: {
-    borderRadius: 8,
-    width: 200,
-    height: 40,
-    marginTop: 15,
+    borderRadius: 35,
+    height: 70,
+    justifyContent:'center',
     alignItems: 'center',
     backgroundColor: '#AB0032',
-    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 20
+    
   },
   
   buttonText: {
+    fontWeight:'bold',
+    fontSize: 20,
     color: 'white',
-    fontSize: 15,
+    
   },
 
   textInput: {
     height: 40,
     width: 250,
-    borderColor: 'gray',
-    borderWidth: 1
+    borderColor: 'white',
+    borderWidth: 1,
+    marginHorizontal: 60,
+    backgroundColor: 'grey',
+   
+    
   },
   
   headline: {
     //textAlign: 'center',
     fontWeight: 'bold',
-    //fontSize: 24,
+    fontSize: 24,
     alignItems: 'stretch',
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginHorizontal: 60,
+    color: 'black',
     
   },
   
