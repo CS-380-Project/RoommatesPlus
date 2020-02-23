@@ -26,19 +26,19 @@ const SignedOut = createStackNavigator({
     LoginScreen: {
       screen: Login,
       navigationOptions: {
-        header: null
+        headerShown: false
       } 
     },
     CrtAccountScreen: {
       screen: CreateAccount,
       navigationOptions: {
-        header: null
+        headerShown: false
       }
     },   
     UserInfo: {
       screen: AccountInfo,
       navigationOptions: {
-        header: null
+        headerShown: false
       }
     } 
 });
