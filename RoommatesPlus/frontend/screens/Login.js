@@ -62,10 +62,6 @@ export default class Login extends Component {
           <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress = {() => console.log('removed navigation as it crashes because no user')}
-          style = {styles.button}>
-          <Text style={styles.buttonText}>GO TO DASHBOARD</Text>
-        </TouchableOpacity> 
         </View>             
       </View>
     );
