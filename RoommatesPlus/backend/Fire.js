@@ -45,15 +45,15 @@ class Fire {
     }
 
 
-    // onAuthStateChanged = user => {
-    //     if (!user) {
-    //         try { 
-    //             firebase.auth().signInAnonymously();
-    //         } catch ({ message }) {
-    //             alert(message);
-    //         }
-    //     }           
-    // };   
+    onAuthStateChanged = user => {
+        if (!user) {
+            try { 
+                firebase.auth().signInAnonymously();
+            } catch ({ message }) {
+                alert(message);
+            }
+        }           
+    };   
 
     // // sign-up
     // createUser(firstName, lastName, gender, phoneNumber, houseID, email, password){
@@ -104,26 +104,6 @@ class Fire {
     get udi(){
         return firebase.auth().currentUser;
 
-    }
-
-    currentUserDoc(){
-     
-        let userRef = firebase.firestore().collection('users');
-        let query = userRef.where('email', '==', Fire.shared.udi.email).get()
-        .then(snapshot => {
-            if (snapshot.empty) {
-                console.log('No matching documents.');
-                return;
-            }  
-            snapshot.forEach(doc => {
-                console.log(doc.id, '=>', doc.data());
-            //  userData = [doc.data().first_name, doc.data().last_name, doc.data().phone, doc.data().gender];
-                UserData.shared.updateUserData(doc.data().first_name, doc.data().last_name, doc.data().gender, doc.data().phone,  Fire.shared.udi.email);
-            })          
-        })
-        .catch(err => {
-            console.log('Error getting documents', err);
-        }); 
     }
 
     get ref(){
