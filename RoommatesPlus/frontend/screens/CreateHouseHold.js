@@ -7,7 +7,7 @@ export default class CreateHouseHold extends Component {
     render() {
         return(
             <View style = {styles.container}>
-                <Text>Household Name</Text>
+                <Text style={styles.headline}>Household Name</Text>
                 <TextInput style = {styles.textInput} placeholder = "Enter any name!"> 
                 </TextInput>
                 

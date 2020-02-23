@@ -1,20 +1,14 @@
 import firebase from 'firebase'; 
-import { Alert } from 'react-native';
+import firestore from 'firebase/firestore';
+import UserData from './UserData';
 
 class Fire {
+
     constructor() {
         this.init();
         this.observeAuth();
-       // const db = firebase.firestore();    
     }
     
-    /*user = firebase.auth().currentUser;
-    name = ''; 
-    email = ''; 
-    photoURL = ''; 
-    uid = ''; 
-    emailVerified = '';*/
-
     init = () => firebase.initializeApp({
         apiKey: "AIzaSyA4RsDJumMfFG6BGnZv-mdNpSDEq8QbdC8",
         authDomain: "roommatesplus-15f85.firebaseapp.com",
@@ -26,8 +20,16 @@ class Fire {
         measurementId: "G-B4PHE4YGZK"
     });
 
-    
-    observeAuth = () => firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
+    observeAuth() {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+               return user;
+            } else {
+               console.log('failed (in else of observeAuth() )')
+               return null;
+            }
+        });
+    }
 
     onAuthStateChanged = user => {
         if (!user) {
@@ -39,40 +41,23 @@ class Fire {
         }           
     };   
 
-    // sign-up
-    createUser(email, password){
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => console.log('success!')) 
-        .catch(function(error){
-            errorCode = error.code;
-            errorMessage = error.message;
-            console.log('login failed')
-        }); 
-    }
-
-
-    signIn(email, password){
-        firebase.auth().signInWithEmailAndPassword(email, password).then(
-            () => console.log('login successful')
-        ).catch(function(error){
-            errorCode = error.code;
-            errorMessage = error.message;
-            console.log('login failed')
-        });
-    }
-
     signOut(){
-        firebase.auth().signOut().then(function(){
+
+        firebase.auth().signOut()
+        .then(() =>{
             console.log('Sign out successful')
-        }).catch(function(error){
+            navigation.navigate('LoginScreen')
+        }).catch((error) => {
             errorCode = error.code;
             errorMessage = error.message;
             console.log('Sign out error')
         });
+       
     }
     
     get udi(){
         return firebase.auth().currentUser;
+
     }
 
     get ref(){
@@ -85,4 +70,5 @@ class Fire {
 }
 
 Fire.shared = new Fire();
+
 export default Fire;

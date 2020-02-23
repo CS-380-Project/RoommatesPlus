@@ -11,7 +11,7 @@ export default class JoinHouseHold extends Component {
     render() {
         return (
             <View style = {styles.container}>
-                <Text>Join a Household Name</Text>
+                <Text style={styles.headline}>Join a Household Name</Text>
                 <TextInput style = {styles.textInput} placeholder = "Enter the house ID"/>
                 
                 <TouchableOpacity style={styles.button} onPress={this.onPress}>
