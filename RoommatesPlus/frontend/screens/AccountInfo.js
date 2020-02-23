@@ -3,7 +3,7 @@ import { styles } from '../styles/style';
 import { Text, View, TextInput, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from 'firebase';
-import firestore from 'firebase/firestore';
+import {AsyncStorage} from 'react-native';
 import Fire from '../../backend/Fire';
 
 export default class AccountInfo extends Component {
@@ -25,12 +25,18 @@ export default class AccountInfo extends Component {
         })
         .then(() => {
             console.log('User Data added!')
-            this.props.navigation.navigate('Roommates')
+            this._createAccountInAsync()
         })
         .catch(error => {
             Alert.alert(error.message)
             console.log(error.message)
         });
+    };
+
+    _createAccountInAsync = async () => {
+        await AsyncStorage.setItem('userToken', 'LoggedIn');
+        this.props.navigation.navigate('LoggedIn')
+        console.log('Account Created, switching to LoggedIn Navigator')
     };
 
     render() {

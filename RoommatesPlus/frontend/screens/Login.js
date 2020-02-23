@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { styles } from '../styles/style';
-import { Text, View, TextInput,StyleSheet,Dimensions, TouchableOpacity,Image} from 'react-native';
-import Fire from '../../backend/Fire';
+import { Text, View, TextInput,StyleSheet,Dimensions, TouchableOpacity, Image, AsyncStorage} from 'react-native';
 import firebase from 'firebase';
 import { Alert } from 'react-native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
-
 
 const {width,height} = Dimensions.get('window')
 export default class Login extends Component {
@@ -18,12 +16,18 @@ export default class Login extends Component {
   onLoginButtonPress = () => {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-            this.props.navigation.navigate('Roommates')
+            this._signInAsync()
             console.log('login successful')
         }).catch((error) => {
             Alert.alert('Invalid email or password!')
             console.log('Login Failed')
         });
+  };
+
+  _signInAsync = async () => {
+    await AsyncStorage.setItem('userToken', 'LoggedIn');
+    this.props.navigation.navigate('LoggedIn')
+    console.log('Now Switch to SignedIn Navigator')
   };
 
   // front end render input fields and button
@@ -58,7 +62,7 @@ export default class Login extends Component {
           <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress = {() => this.props.navigation.navigate('Roommates')}
+        <TouchableOpacity onPress = {() => console.log('removed navigation as it crashes because no user')}
           style = {styles.button}>
           <Text style={styles.buttonText}>GO TO DASHBOARD</Text>
         </TouchableOpacity> 
