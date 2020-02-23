@@ -1,8 +1,12 @@
 import  React from 'react';
-import { Text, View } from 'react-native';
+
+// Navigation Imports
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+
+// https://oblador.github.io/react-native-vector-icons/ for icons list, change /FontAwesome for different section
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // Screens Imports
 import Login from '../frontend/screens/Login';
@@ -19,23 +23,54 @@ const AuthLoading = AuthLoadingScreen
 
 // Stack Navigator for Login & Create Account Screens
 const SignedOut = createStackNavigator({
-    LoginScreen: Login,
-    CrtAccountScreen: CreateAccount,
-    UserInfo: AccountInfo
+    LoginScreen: {
+      screen: Login,
+      navigationOptions: {
+        header: null
+      } 
+    },
+    CrtAccountScreen: {
+      screen: CreateAccount,
+      navigationOptions: {
+        header: null
+      }
+    },   
+    UserInfo: {
+      screen: AccountInfo,
+      navigationOptions: {
+        header: null
+      }
+    } 
 });
 
 // Bottom Tab Navigator for Profile, Household, and Settings Screens
 const SignedIn = createMaterialBottomTabNavigator(
     {
-      Profile: { screen: Profile},
-      Household: { screen: CreateHouseHold },
-      Settings: { screen: Settings },
+      Profile: { 
+        screen: Profile,
+        navigationOptions: {
+          tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'user'} style={{ color: tintColor }} />)
+        }
+      },
+      Household: { 
+        screen: CreateHouseHold,
+        navigationOptions: {
+          tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'home'} style={{ color: tintColor }} />)
+        }
+      },
+      Settings: { 
+        screen: Settings,
+        navigationOptions: {
+          tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'gear'} style={{ color: tintColor }} />)
+        }
+      },
     },
     {
       initialRouteName: 'Profile',
-      activeColor: '#f0edf6',
-      inactiveColor: '#3e2465',
-      barStyle: { backgroundColor: '#694fad' },
+      shifting: 'true',
+      activeColor: 'white',
+      inactiveColor: 'black',
+      barStyle: { backgroundColor: '#AB0032',  },
     }
   );
 
@@ -49,6 +84,6 @@ const RootNavigator = createSwitchNavigator(
     {
       initialRouteName: 'Loading',
     }
-  )
+)
 
 export default createAppContainer(RootNavigator);

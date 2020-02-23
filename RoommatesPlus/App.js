@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import {AppRegistry} from 'react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
 import RootNavigator from './backend/Navigation';
 import Fire from './backend/Fire';
 
@@ -25,6 +22,8 @@ export default class App extends Component {
 
   // front end render input fields and button
   render(){
-    return <RootNavigator/>;
+    return (
+        <RootNavigator/>
+    );
   }
 }   
