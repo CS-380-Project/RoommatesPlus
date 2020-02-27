@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  LoginScreen: Login,
+ LoginScreen: Login,
   Roommates: Dashboard,
   CrtAccountScreen: CreateAccount,
   House: CreateHouseHold,

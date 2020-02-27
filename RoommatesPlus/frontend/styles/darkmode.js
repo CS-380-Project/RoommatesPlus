@@ -1,4 +1,4 @@
- import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 // styles
 export const styles = StyleSheet.create({
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     borderColor: 'white',
     borderWidth: 1,
     marginHorizontal: 60,
-    backgroundColor: 'grey',
+    backgroundColor: 'green',
    
     
   },
@@ -62,30 +62,7 @@ export const styles = StyleSheet.create({
       
   },
 
-  // Create account page---------------------------------------------------------------------------
-
-  container: {
-    backgroundColor: 'white',
-    flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignSelf: 'stretch',
-    paddingLeft: 60,
-    paddingRight: 60
-    
-  },
-  CreateAccountheader: {
-      fontSize: 24,
-      color: 'black',
-      fontWeight: 'bold',
-      paddingBottom: 10,
-      marginBottom: 40,
-      borderBottomColor: '#AB0032',
-      borderBottomWidth: 1,
-      marginHorizontal: 55,
-
-  },
-
+  // Create account page
   CreateAccountbutton: {
     borderRadius: 35,
     height: 70,
@@ -106,25 +83,26 @@ export const styles = StyleSheet.create({
 
   CreateAccounttextInput: {
     height: 40,
-    alignSelf: 'stretch',
-    marginBottom: 30,
-    color: '#AB0032',
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-      
+    width: 250,
+    borderColor: 'white',
+    borderWidth: 1,
+    marginHorizontal: 60,
+    backgroundColor: 'grey',
+   
+    
   },
   
- // CreateAccountheadline: {
+  CreateAccountheadline: {
     //textAlign: 'center',
-   // fontWeight: 'bold',
-   // fontSize: 24,
-   // alignItems: 'stretch',
-   // flexDirection: 'row',
-   // justifyContent: 'center',
-   // marginHorizontal: 60,
-   // color: 'white',
+    fontWeight: 'bold',
+    fontSize: 24,
+    alignItems: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginHorizontal: 60,
+    color: 'white',
     
-//  },
+  },
   
   CreateAccountfooter:{
     textAlign: 'center',
