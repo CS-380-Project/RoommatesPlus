@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { styles } from '../styles/style';
 import { Text, View, TextInput, Alert,StyleSheet,Image,KeyboardAvoidingView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Fire from '../../backend/Fire';
 import firebase from 'firebase'; 
-import firestore from 'firebase/firestore';
-
 
 export default class CreateAccount extends Component {
     state = {
@@ -23,8 +20,8 @@ export default class CreateAccount extends Component {
             });
         })
         .then(() => {
-            console.log('Account created!')
             this.props.navigation.navigate('UserInfo')
+            console.log('Account created!')
         })
         .catch(error => {
             Alert.alert(error.message)
@@ -61,7 +58,7 @@ export default class CreateAccount extends Component {
                 onPress = {this.onSubmitButtonPress}>
                 <Text style={styles.CreateAccountbuttonText}>Submit</Text>
                 </TouchableOpacity>
-</View>
+                </View>
             </View>
             </KeyboardAvoidingView>
         );

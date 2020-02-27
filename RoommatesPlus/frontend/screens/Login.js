@@ -4,7 +4,7 @@ import { Text, View, TextInput,StyleSheet,Dimensions, TouchableOpacity,Image, Sc
 import Fire from '../../backend/Fire';
 import firebase from 'firebase';
 import { Alert } from 'react-native';
-
+import { Header } from 'react-native/Libraries/NewAppScreen';
 
 const {width,height} = Dimensions.get('window')
 export default class Login extends Component {
@@ -17,7 +17,7 @@ export default class Login extends Component {
   onLoginButtonPress = () => {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-            this.props.navigation.navigate('Roommates')
+            this._signInAsync()
             console.log('login successful')
         }).catch((error) => {
             Alert.alert('Invalid email or password!')
@@ -25,10 +25,16 @@ export default class Login extends Component {
         });
   };
 
+  _signInAsync = async () => {
+    await AsyncStorage.setItem('userToken', 'LoggedIn');
+    this.props.navigation.navigate('LoggedIn')
+    console.log('Now Switch to SignedIn Navigator')
+  };
+
   // front end render input fields and button
   render(){
     return (
-    <KeyboardAvoidingView style={{flex:1}} behavior="padding">
+    
       <View style={{flex:1, backgroundColor: 'white', justifyContent:'flex-end'}}>
         
         <View style={{...StyleSheet.absoluteFill}}>
@@ -50,6 +56,9 @@ export default class Login extends Component {
 <TextInput  secureTextEntry style = {styles.LogintextInput} placeholder =  "enter password"  onChangeText={(password) => this.setState({password})}
     value={this.state.password}/>
 
+        <TextInput  secureTextEntry style = {styles.textInput} placeholder =  "enter password"  
+            onChangeText={(password) => this.setState({password})}
+            value={this.state.password}/>
 
 <TouchableOpacity onPress = {() => {this.onLoginButtonPress(); this.props.navigation.navigate('Roommates');}}
   style = {styles.Loginbutton}>
@@ -69,10 +78,10 @@ export default class Login extends Component {
         </View>
       
 
+        </View>             
       
-             
-      </View>
-      </KeyboardAvoidingView>
+     
+  
     );
     }
 }   

@@ -1,7 +1,5 @@
 import firebase from 'firebase'; 
-import { Alert } from 'react-native';
 import firestore from 'firebase/firestore';
-import {useNavigation} from '@react-navigation/native';
 import UserData from './UserData';
 
 class Fire {
@@ -9,17 +7,8 @@ class Fire {
     constructor() {
         this.init();
         this.observeAuth();
-       // const db = firebase.firestore();   
     }
     
-    /*user = firebase.auth().currentUser;
-    name = ''; s
-    email = ''; 
-    photoURL = ''; 
-    uid = ''; 
-    emailVerified = '';*/
-    
-
     init = () => firebase.initializeApp({
         apiKey: "AIzaSyA4RsDJumMfFG6BGnZv-mdNpSDEq8QbdC8",
         authDomain: "roommatesplus-15f85.firebaseapp.com",
@@ -31,61 +20,26 @@ class Fire {
         measurementId: "G-B4PHE4YGZK"
     });
 
-
-
     observeAuth() {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                return user;
+               return user;
             } else {
-                console.log('failed')
+               console.log('failed (in else of observeAuth() )')
                return null;
             }
         });
     }
 
-
-    // onAuthStateChanged = user => {
-    //     if (!user) {
-    //         try { 
-    //             firebase.auth().signInAnonymously();
-    //         } catch ({ message }) {
-    //             alert(message);
-    //         }
-    //     }           
-    // };   
-
-    // // sign-up
-    // createUser(firstName, lastName, gender, phoneNumber, houseID, email, password){
-
-    //     firebase.auth().createUserWithEmailAndPassword(email, password)
-    //     .then(() => {
-    //         firebase.firestore().collection('users').add({
-    //             first_name: firstName,
-    //             gender: gender,
-    //             houseID: houseID,
-    //             last_name: lastName,
-    //             phone: phoneNumber,
-    //             user_name: email,
-    //         });
-
-    //         console.log('create account successful')
-    //     }) 
-    //     .catch(function(error){
-    //         console.log('login failed')
-    //     }); 
-    // }
-
-    // signIn(email, password){
-    //     firebase.auth().signInWithEmailAndPassword(email, password)
-    //     .then(() => {
-    //         console.log('login successful')
-    //     }).catch(function(error){
-    //         errorCode = error.code;
-    //         errorMessage = error.message;
-    //         console.log('login failed')
-    //     });
-    // }
+    onAuthStateChanged = user => {
+        if (!user) {
+            try { 
+                firebase.auth().signInAnonymously();
+            } catch ({ message }) {
+                alert(message);
+            }
+        }           
+    };   
 
     signOut(){
 
@@ -104,26 +58,6 @@ class Fire {
     get udi(){
         return firebase.auth().currentUser;
 
-    }
-
-    currentUserDoc(){
-     
-        let userRef = firebase.firestore().collection('users');
-        let query = userRef.where('email', '==', Fire.shared.udi.email).get()
-        .then(snapshot => {
-            if (snapshot.empty) {
-                console.log('No matching documents.');
-                return;
-            }  
-            snapshot.forEach(doc => {
-                console.log(doc.id, '=>', doc.data());
-            //  userData = [doc.data().first_name, doc.data().last_name, doc.data().phone, doc.data().gender];
-                UserData.shared.updateUserData(doc.data().first_name, doc.data().last_name, doc.data().gender, doc.data().phone,  Fire.shared.udi.email);
-            })          
-        })
-        .catch(err => {
-            console.log('Error getting documents', err);
-        }); 
     }
 
     get ref(){
