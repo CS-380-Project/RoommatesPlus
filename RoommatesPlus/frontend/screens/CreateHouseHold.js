@@ -12,9 +12,10 @@ export default class CreateHouseHold extends Component {
                 </TextInput>
                 
                 
-                <TouchableOpacity style = { styles.button } onPress = {this.onPress}>
-                    <Text style = { styles.buttonText }>Finish</Text>
-                </TouchableOpacity>
+                <TouchableOpacity onPress = {() => this.props.navigation.navigate('HsHldDashboard')}
+          style = {styles.button}>
+          <Text style={styles.buttonText}>go to household dashboard</Text>
+        </TouchableOpacity>
             </View>
         );
     }

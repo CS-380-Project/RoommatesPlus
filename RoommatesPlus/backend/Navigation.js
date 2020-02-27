@@ -17,6 +17,8 @@ import CreateHouseHold from '../frontend/screens/CreateHouseHold';
 import JoinHouseHold from '../frontend/screens/JoinHouseHold';
 import Settings from '../frontend/screens/Settings';
 import AuthLoadingScreen from './AuthLoadingScreen';
+import HouseHoldDashboard from '../frontend/screens/HouseHoldDashboard';
+import HouseHoldMembers from '../frontend/screens/HouseHoldMembers';
 
 // Load Screen
 const AuthLoading = AuthLoadingScreen
@@ -40,9 +42,31 @@ const SignedOut = createStackNavigator({
       navigationOptions: {
         headerShown: false
       }
-    } 
+    },
+
 });
 
+//stack navigator for HouseHoldDashboard
+const HousehldDash = createStackNavigator({
+  Household: { 
+    screen: CreateHouseHold,
+    navigationOptions: {
+      tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'home'} style={{ color: tintColor }} />)
+    }
+  },
+  HsHldDashboard:{
+    screen: HouseHoldDashboard,
+    navigationOptions:{
+      headerShown: true
+    }
+    },
+    HsHldMems:{
+      screen: HouseHoldMembers,
+      navigationOptions:{
+        headerShown: true
+    }
+  }
+});
 // Bottom Tab Navigator for Profile, Household, and Settings Screens
 const SignedIn = createMaterialBottomTabNavigator(
     {
@@ -80,6 +104,7 @@ const RootNavigator = createSwitchNavigator(
       Loading: AuthLoading,
       LoggedIn: SignedIn,
       LoggedOut: SignedOut,
+      Dash: HousehldDash
     },
     {
       initialRouteName: 'Loading',
