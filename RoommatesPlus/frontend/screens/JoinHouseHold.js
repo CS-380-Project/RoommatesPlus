@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { styles } from '../styles/style';
 import { Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
+import {Header, Left, Icon} from 'native-base';
 import {openDatabase} from 'react-native-sqlite-storage';
 import * as SQLite from 'expo-sqlite'
 

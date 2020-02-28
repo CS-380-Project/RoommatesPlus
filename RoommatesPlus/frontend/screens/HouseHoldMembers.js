@@ -30,7 +30,7 @@ const DATA = [
 function Item({ title }) {
   return (
     <View style={styles.item}>
-                      <TouchableOpacity onPress = {() => this.props.navigation.navigate(styles.button)}
+          <TouchableOpacity onPress = {() => this.props.navigation.navigate(styles.button)}
           style = {styles.button}>
           <Text style={styles.title}>{title}</Text>
         </TouchableOpacity>

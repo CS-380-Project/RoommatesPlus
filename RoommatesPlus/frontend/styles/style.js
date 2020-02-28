@@ -2,6 +2,11 @@
 
 // styles
 export const styles = StyleSheet.create({
+  header: {
+    backgroundColor: 'black',
+    flex: 1,
+  },
+
   container: {
     backgroundColor: 'white',
     flex: 1,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RootNavigator from './backend/Navigation';
 import Fire from './backend/Fire';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default class App extends Component {
   constructor(props) {
@@ -23,7 +24,9 @@ export default class App extends Component {
   // front end render input fields and button
   render(){
     return (
-        <RootNavigator/>
+        <SafeAreaProvider>
+          <RootNavigator/>
+        </SafeAreaProvider>
     );
   }
 }   
