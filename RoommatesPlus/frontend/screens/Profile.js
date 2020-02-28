@@ -13,11 +13,12 @@ export default class Profile extends Component {
         userEmail: null,
         gender: null,
         houseID: null,
-        phoneNumber: null
+        phoneNumber: null,
+        newName: ''
     }
 
     getUserInfo () {
-        
+        console.log('userInfo');
         let email = firebase.auth().currentUser.email;
         let userRef = firebase.firestore().collection('users');
         let query = userRef.where('email', '==', email).get()
@@ -28,6 +29,7 @@ export default class Profile extends Component {
             }  
             snapshot.forEach(doc => {
                 console.log(doc.id, '=>', doc.data());
+                //UserData.shared.setDocId(doc.id);
                 this.setState({
                     firstName: doc.data().first_name,
                     lastName:  doc.data().last_name,
@@ -44,6 +46,54 @@ export default class Profile extends Component {
        
     }
 
+
+  
+    render(){
+
+        
+        if (firebase.auth().currentUser != null && this.state.firstName == null){
+            this.getUserInfo()
+            // set document id
+            Fire.shared.findDocId('users', 'email', firebase.auth().currentUser.email);
+        }
+        
+    
+        return(
+            <View style = {styles.container}>
+                <Text style={styles.headline}>Profile</Text>
+                <Text style={styles.headline}>Name: {this.state.firstName + ' ' + this.state.lastName}</Text>
+                <Text style={styles.headline}>Gender: {this.state.gender}</Text>
+                <Text style={styles.headline}>Phone Number: {this.state.phoneNumber}</Text>
+                <Text style={styles.headline}>Email: {this.state.userEmail}</Text>
+
+                {/*Testing for editing existing database data*/}
+                {/* <TextInput style = {styles.textInput}  onChangeText={(newName) => this.setState({newName})}
+                    value={this.state.newName} ></TextInput>
+                <TouchableOpacity style = {styles.button} on onPress = { console.log('new namea =========> '+ this.state.newName),  this.editName.bind()} >
+                    <Text style = {styles.buttonText}>Change name</Text>
+                </TouchableOpacity> */}
+            </View>
+        );
+    }
+
+    editName = () =>{
+    
+        changedName = this.state.newName;
+        console.log('DOCUMENT ID:   ' + Fire.shared.DocId);
+        const ref = firebase.firestore().collection('users').doc(Fire.shared.DocId);
+        firebase.firestore().runTransaction(async transaction => {
+            const doc = await transaction.get(ref);
+            transaction.update(ref, {
+                first_name: changedName,
+            });
+
+        }).then(()=>{
+           this.getUserInfo();
+        }).catch(error => {
+            console.log('transaction big oof', error);
+        })
+    }
+
     resetData(){
         console.log('we reseting iterere');
         this.setState({
@@ -56,20 +106,4 @@ export default class Profile extends Component {
         })
     }
 
-    render(){
-        if (firebase.auth().currentUser != null && this.state.firstName == null){
-            this.getUserInfo()
-        }
-        
-    
-        return(
-            <View style = {styles.container}>
-                <Text style={styles.headline}>Profile</Text>
-                <Text style={styles.headline}>Name: {this.state.firstName + ' ' + this.state.lastName}</Text>
-                <Text style={styles.headline}>Gender: {this.state.gender}</Text>
-                <Text style={styles.headline}>Phone Number: {this.state.phoneNumber}</Text>
-                <Text style={styles.headline}>Email: {this.state.userEmail}</Text>
-            </View>
-        );
-    }
 }
