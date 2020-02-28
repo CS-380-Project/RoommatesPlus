@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { styles } from '../styles/style';
-import { Text, View, TextInput, Alert } from 'react-native';
+import { Text, View, TextInput, Alert,StyleSheet,Image,KeyboardAvoidingView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from 'firebase'; 
 
@@ -31,28 +31,36 @@ export default class CreateAccount extends Component {
 
     render() {
         return (
-            <View style = {styles.container}>
+            <KeyboardAvoidingView style={{flex:1}} behavior="padding">
+            <View style={styles.container}>
+        <View style={{...StyleSheet.absoluteFill}}>
+        <Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/roommatesplus-15f85.appspot.com/o/wal2.jpg?alt=media&token=89aa0b8c-3687-4eaa-9198-c17418499e72" }}
+          style={{flex:1}}
+          />
+        </View>
+            
                 <View style={{justifyContent: 'center', height: 800 }}>
-
-                <Text style={styles.headline}>Email</Text>
-                <TextInput style = {styles.textInput} placeholder = "Email Address"
+                <Text style={styles.CreateAccountheader}>Registration</Text>
+                
+                <TextInput style = {styles.CreateAccounttextInput} placeholder = "Email Address" placeholderTextColor = "black"
                 value={this.state.email}
                  onChangeText={(email) => this.setState({email})}/>
 
-                <Text style={styles.headline}>Password</Text>
-                <TextInput style = {styles.textInput} placeholder = "Password" 
+               
+                <TextInput style = {styles.CreateAccounttextInput} placeholder = "Password" placeholderTextColor = "black" 
                 value={this.state.password}
                 onChangeText={(password) => this.setState({password})}/>
                 
-                <Text style={styles.headline}>Confirm Password</Text>
-                <TextInput style = {styles.textInput} placeholder = "Confirm Password"/>
+              
+                <TextInput style = {styles.CreateAccounttextInput} placeholder = "Confirm Password" placeholderTextColor = "black"/>
 
-                <TouchableOpacity style={styles.button} 
+                <TouchableOpacity style={styles.CreateAccountbutton} 
                 onPress = {this.onSubmitButtonPress}>
-                <Text style={styles.buttonText}>Submit</Text>
+                <Text style={styles.CreateAccountbuttonText}>Submit</Text>
                 </TouchableOpacity>
                 </View>
             </View>
+            </KeyboardAvoidingView>
         );
     }
 }
