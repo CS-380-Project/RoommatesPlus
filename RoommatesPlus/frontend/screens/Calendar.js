@@ -3,7 +3,7 @@ import { styles } from '../styles/style';
 import { Text, View, TextInput } from 'react-native';
 import {Header, Left, Icon} from 'native-base';
 
-export default class Chores extends Component {
+export default class Calendar extends Component {
 
     render() {
         return (
@@ -14,7 +14,7 @@ export default class Chores extends Component {
                     </Left>
                 </Header>
                 <View style = {styles.container}>
-                    <Text>Chores Screen</Text>
+                    <Text>Calendar Screen</Text>
                 </View>
             </View>
         );

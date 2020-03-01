@@ -10,6 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 // https://oblador.github.io/react-native-vector-icons/ for icons list, change /FontAwesome for different section
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // Screens Imports
 import Login from '../frontend/screens/Login';
@@ -24,6 +25,7 @@ import HouseHoldDashboard from '../frontend/screens/HouseHoldDashboard';
 import HouseHoldMembers from '../frontend/screens/HouseHoldMembers';
 import Chores from '../frontend/screens/Chores';
 import Messaging from '../frontend/screens/Messaging';
+import Calendar from '../frontend/screens/Calendar';
 
 // Load Screen
 const AuthLoading = AuthLoadingScreen
@@ -48,58 +50,38 @@ const SignedOut = createStackNavigator({
         headerShown: false
       }
     },
-
-});
-
-//stack navigator for HouseHoldDashboard
-const HousehldDash = createStackNavigator({
-  // Household: { 
-  //   screen: CreateHouseHold,
-  //   navigationOptions: {
-  //     tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'home'} style={{ color: tintColor }} />)
-  //   }
-  // },
-  HsHldDashboard:{
-    screen: HouseHoldDashboard,
-    navigationOptions:{
-      headerShown: true
-    }
-    },
-    HsHldMems:{
-      screen: HouseHoldMembers,
-      navigationOptions:{
-        headerShown: true
-    }
-  }
 });
 
 // Bottom Tab Navigator for Profile, Household, and Settings Screens
 const SignedIn = createMaterialBottomTabNavigator(
     {
-      Household: { 
-        screen: JoinHouseHold,
+      Chores: {
+        screen: Chores,
         navigationOptions: {
-          headerShown: true,
-          tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'home'} style={{ color: tintColor }} />)
+          tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'check-square-o'} style={{ color: tintColor }} />)
+        }
+      },
+      Calendar: {
+        screen: Calendar, 
+        navigationOptions: {
+          tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'calendar'} style={{ color: tintColor }} />)
         }
       },
       Members:{
         screen: HouseHoldMembers,
         navigationOptions:{
-          headerShown: true,
           tabBarIcon: ({ tintColor, focused }) => (<Icon size={22} name={'users'} style={{ color: tintColor }} />)
         }
       },
       Messages: {
         screen: Messaging,
         navigationOptions: {
-          headerShown: true,
           tabBarIcon: ({ tintColor, focused }) => (<Icon size={22} name={'comments'} style={{ color: tintColor }} />)
         }
       }
     },
     {
-      initialRouteName: 'Household',
+      initialRouteName: 'Chores',
       shifting: 'true',
       activeColor: 'white',
       inactiveColor: 'black',
@@ -129,16 +111,30 @@ const SignedIn = createMaterialBottomTabNavigator(
           drawerIcon: ({ tintColor, focused }) => (<Icon size={25} name={'user'} style={{ color: tintColor }} />)
         }
       },
+      'My Household': { 
+        screen: JoinHouseHold,
+        navigationOptions: {
+          drawerIcon: ({ tintColor, focused }) => (<MIcon size={25} name={'home-account'} style={{ color: tintColor }} />)
+        }
+      },
       Settings: {
         screen: Settings,
         navigationOptions: {
           drawerIcon: ({ tintColor, focused }) => (<Icon size={25} name={'gear'} style={{ color: tintColor }} />)
         }
-      }    
+      },
+      'Dev To Do List (Delete me later)': { 
+        screen: HouseHoldDashboard,
+        navigationOptions: {
+          drawerIcon: ({ tintColor, focused }) => (<MIcon size={25} name={'home-account'} style={{ color: tintColor }} />)
+        }
+      }
     },
     {
       contentComponent: CustomComponent,
-      //activeTintColor: '#AB0032',
+      contentOptions: {
+        activeTintColor: '#AB0032'
+      }
     }
   );
 
@@ -148,7 +144,6 @@ const RootNavigator = createSwitchNavigator(
       Loading: AuthLoading,
       LoggedIn: ProfileDrawer,
       LoggedOut: SignedOut,
-      Dash: HousehldDash
     },
     {
       initialRouteName: 'Loading',

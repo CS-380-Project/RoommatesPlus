@@ -11,17 +11,24 @@ export default class JoinHouseHold extends Component {
     
     render() {
         return (
-            <View style = {styles.container}>
-                <Text style={styles.headline}>Join a Household Name</Text>
-                <TextInput style = {styles.textInput} placeholder = "Enter the house ID"/>
-                
-                <TouchableOpacity style={styles.button} onPress={this.onPress}>
-                        <Text style={styles.buttonText}>Look up Household</Text>
-                </TouchableOpacity>
-                
-                <TouchableOpacity style={styles.button} onPress={this.onPress}>
-                        <Text style={styles.buttonText}>Check Invites</Text>
-                </TouchableOpacity>
+            <View style = {{flex: 1}}>
+                <Header style = {styles.header}>
+                    <Left style = {{flex: 1, marginHorizontal: 10}}>
+                        <Icon name={'menu'} style={{color: 'black'}} onPress={() => this.props.navigation.openDrawer()}/>
+                    </Left>
+                </Header>
+                <View style = {styles.container}>
+                    <Text style={styles.headline}>Join a Household Name</Text>
+                    <TextInput style = {styles.textInput} placeholder = "Enter the house ID"/>
+                    
+                    <TouchableOpacity style={styles.button} onPress={this.onPress}>
+                            <Text style={styles.buttonText}>Look up Household</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity style={styles.button} onPress={this.onPress}>
+                            <Text style={styles.buttonText}>Check Invites</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
