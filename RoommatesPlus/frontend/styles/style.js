@@ -3,6 +3,13 @@
 // styles
 export const styles = StyleSheet.create({
 
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  
   button: {
     borderRadius: 35,
     height: 70,
@@ -33,7 +40,7 @@ export const styles = StyleSheet.create({
   },
   
   headline: {
-   // textAlign: 'center',
+    //textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 24,
     alignItems: 'stretch',
@@ -46,7 +53,7 @@ export const styles = StyleSheet.create({
   
   footer:{
     textAlign: 'center',
-    alignItems: 'center',
+    //alignItems: 'center',
     fontWeight: 'bold',
     fontSize: 24,
     marginTop: 0,
@@ -55,7 +62,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
       
   },
-  
   Loginbutton: {
     borderRadius: 35,
     height: 70,
@@ -110,17 +116,6 @@ export const styles = StyleSheet.create({
   },
 
   // Create account page---------------------------------------------------------------------------
-
-  container: {
-    backgroundColor: 'white',
-    flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignSelf: 'stretch',
-    paddingLeft: 60,
-    paddingRight: 60
-    
-  },
   CreateAccountheader: {
       fontSize: 24,
       color: 'black',

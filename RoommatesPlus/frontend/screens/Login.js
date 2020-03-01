@@ -35,7 +35,7 @@ export default class Login extends Component {
   // front end render input fields and button
   render(){
     return (
-    
+    <KeyboardAvoidingView style={{flex:1}} behavior="padding">
       <View style={{flex:1, backgroundColor: 'white', justifyContent:'flex-end'}}>
         
         <View style={{...StyleSheet.absoluteFill}}>
@@ -67,14 +67,9 @@ export default class Login extends Component {
   <Text style={styles.LoginbuttonText}>CREATE ACCOUNT</Text>
 </TouchableOpacity>
 
-
-        </View>
-      
-
-        </View>             
-      
-     
-  
+    </View>    
+  </View>             
+</KeyboardAvoidingView>
     );
     }
 }   
