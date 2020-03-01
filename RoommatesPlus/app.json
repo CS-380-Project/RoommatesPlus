@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "https://firebasestorage.googleapis.com/v0/b/roommatesplus-15f85.appspot.com/o/icon3.JPEG?alt=media&token=1193a249-ec16-41e9-b453-41f33b8f49fb",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/roommatesplus-15f85.appspot.com/o/splashscreen.JPEG?alt=media&token=e7864a2b-d599-47aa-9652-38412bc393cb",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
