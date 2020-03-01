@@ -5,6 +5,7 @@ import Fire from '../../backend/Fire';
 import firebase from 'firebase';
 import { Alert } from 'react-native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import {AsyncStorage} from 'react-native';
 
 const {width,height} = Dimensions.get('window')
 export default class Login extends Component {
@@ -56,10 +57,6 @@ export default class Login extends Component {
 <TextInput  secureTextEntry style = {styles.LogintextInput} placeholder =  "enter password"  onChangeText={(password) => this.setState({password})}
     value={this.state.password}/>
 
-        <TextInput  secureTextEntry style = {styles.textInput} placeholder =  "enter password"  
-            onChangeText={(password) => this.setState({password})}
-            value={this.state.password}/>
-
 <TouchableOpacity onPress = {() => {this.onLoginButtonPress(); this.props.navigation.navigate('Roommates');}}
   style = {styles.Loginbutton}>
   <Text style={styles.LoginbuttonText}>SIGN IN</Text>
@@ -70,10 +67,6 @@ export default class Login extends Component {
   <Text style={styles.LoginbuttonText}>CREATE ACCOUNT</Text>
 </TouchableOpacity>
 
-<TouchableOpacity onPress = {() => this.props.navigation.navigate('Roommates')}
-  style = {styles.Loginbutton}>
-  <Text style={styles.LoginbuttonText}>GO TO DASHBOARD</Text>
-</TouchableOpacity> 
 
         </View>
       

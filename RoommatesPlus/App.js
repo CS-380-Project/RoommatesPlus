@@ -12,35 +12,6 @@ export default class App extends Component {
     };
   }
 
-// styles
- styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  
-  textInput: {
-    height: 40,
-    width: 120,
-    borderColor: 'gray',
-    borderWidth: 1
-  }
-});
-
- AppNavigator = createStackNavigator({
- LoginScreen: Login,
-  Roommates: Dashboard,
-  CrtAccountScreen: CreateAccount,
-  House: CreateHouseHold,
-  JnHsHld: JoinHouseHold,
-  CrtHsHld: CreateHouseHold,
-  SettingView: Settings,
-  LogoutScreen: Login,
-  UserInfo: AccountInfo
-});
-
   // componentDidMount() {
   //   Fire.shared.observeAuth()
   //     .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
