@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { styles } from '../styles/style';
-import { Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput,StyleSheet,Image,KeyboardAvoidingView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Fire from '../../backend/Fire';
 import UserData from '../../backend/UserData';
@@ -59,12 +59,18 @@ export default class Profile extends Component {
         
     
         return(
+           
             <View style = {styles.container}>
-                <Text style={styles.headline}>Profile</Text>
-                <Text style={styles.headline}>Name: {this.state.firstName + ' ' + this.state.lastName}</Text>
-                <Text style={styles.headline}>Gender: {this.state.gender}</Text>
-                <Text style={styles.headline}>Phone Number: {this.state.phoneNumber}</Text>
-                <Text style={styles.headline}>Email: {this.state.userEmail}</Text>
+                <View style={{...StyleSheet.absoluteFill}}>
+        <Image source={{ uri: "https://firebasestorage.googleapis.com/v0/b/roommatesplus-15f85.appspot.com/o/wal2.jpg?alt=media&token=89aa0b8c-3687-4eaa-9198-c17418499e72" }}
+          style={{flex:1}}
+          />
+        </View>
+                <Text style={styles.Profileheader}>Profile</Text>
+                <Text style={styles.Profileheader}>Name: {this.state.firstName + ' ' + this.state.lastName}</Text>
+                <Text style={styles.Profileheader}>Gender: {this.state.gender}</Text>
+                <Text style={styles.Profileheader}>Phone Number: {this.state.phoneNumber}</Text>
+                <Text style={styles.Profileheader}>Email: {this.state.userEmail}</Text>
 
                 {/*Testing for editing existing database data*/}
                 {/* <TextInput style = {styles.textInput}  onChangeText={(newName) => this.setState({newName})}
@@ -73,6 +79,7 @@ export default class Profile extends Component {
                     <Text style = {styles.buttonText}>Change name</Text>
                 </TouchableOpacity> */}
             </View>
+            
         );
     }
 

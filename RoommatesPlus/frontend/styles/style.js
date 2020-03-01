@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
+    paddingHorizontal: 60
   },
   
   button: {
@@ -179,4 +180,94 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
       
   },
+
+  //--------------------------------------Profile Display------------------------------------
+  Profileheader: {
+    fontSize: 24,
+    color: 'black',
+    fontWeight: 'bold',
+    paddingBottom: 10,
+    marginBottom: 20,
+    borderBottomColor: '#AB0032',
+    borderBottomWidth: 1,
+    marginHorizontal: 55,
+
+},
+
+//-----------------------------create household display------------------------------
+CreateHouseholdheader: {
+  fontSize: 24,
+  color: 'black',
+  fontWeight: 'bold',
+  paddingBottom: 10,
+  marginBottom: 40,
+  borderBottomColor: '#AB0032',
+  borderBottomWidth: 1,
+  marginHorizontal: 55,
+
+},
+
+CreateHouseholdbutton: {
+  borderRadius: 35,
+  height: 70,
+  justifyContent:'center',
+  alignItems: 'center',
+  backgroundColor: '#AB0032',
+  marginVertical: 20,
+  marginHorizontal: 40
+  
+},
+
+CreateHouseholdtextInput: {
+  height: 40,
+  alignSelf: 'stretch',
+  marginBottom: 30,
+  color: '#AB0032',
+  borderBottomColor: 'black',
+  borderBottomWidth: 1,
+    
+},
+
+CreateHouseholdbutton: {
+  borderRadius: 35,
+  height: 70,
+  justifyContent:'center',
+  alignItems: 'center',
+  backgroundColor: '#AB0032',
+  marginVertical: 20,
+  marginHorizontal: 40
+  
+},
+
+//----------------------------Settings Display----------------------------------------------
+
+Settingsheader: {
+  fontSize: 24,
+  color: 'black',
+  fontWeight: 'bold',
+  paddingBottom: 10,
+  marginBottom: 40,
+  borderBottomColor: '#AB0032',
+  borderBottomWidth: 1,
+  marginHorizontal: 55,
+
+},
+
+Settingsbutton: {
+  borderRadius: 35,
+  height: 70,
+  justifyContent:'center',
+  alignItems: 'center',
+  backgroundColor: '#AB0032',
+  marginVertical: 20,
+  marginHorizontal: 40
+  
+},
+
+SettingsbuttonText: {
+  fontWeight:'bold',
+  fontSize: 20,
+  color: 'white',
+  
+},
 });
