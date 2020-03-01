@@ -12,8 +12,6 @@ export default class App extends Component {
     };
   }
 
-  // plan to implement potentially
-
   // componentDidMount() {
   //   Fire.shared.observeAuth()
   //     .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
