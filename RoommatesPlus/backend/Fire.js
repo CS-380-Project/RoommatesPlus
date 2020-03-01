@@ -7,6 +7,7 @@ class Fire {
     constructor() {
         this.init();
         this.observeAuth();
+        this.docId = '';
     }
     
     init = () => firebase.initializeApp({
@@ -54,6 +55,28 @@ class Fire {
         });
        
     }
+
+    findDocId = (collection, fieldX, fieldY) => {
+        console.log('findDocId => collection: ' + collection + ' fieldX: ' + fieldX + ' fieldY: ' + fieldY );
+        let ref = firebase.firestore().collection(collection);
+        let query = ref.where(fieldX, '==', fieldY).get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.');
+                return;
+            }  
+            snapshot.forEach(doc => {
+                console.log(doc.id, '=>', doc.data());
+                console.log('WE HAVE FOUND THE DOCUMENT AND WILL SET THE ID ' + doc.id);
+                Fire.shared.setDocId(doc.id);
+                console.log('DOC ID AFTER SETTING: ' + Fire.shared.DocId);
+            })          
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        }); 
+    }
+
     
     get udi(){
         return firebase.auth().currentUser;
@@ -66,6 +89,14 @@ class Fire {
 
     off(){
         this.ref.off();
+    }
+
+    setDocId = (docId) =>{
+        this.docId = docId;
+    }
+
+    get DocId(){
+        return this.docId;
     }
 }
 
