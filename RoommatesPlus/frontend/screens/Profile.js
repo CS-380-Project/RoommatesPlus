@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { styles } from '../styles/style';
 import { Text, View, TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {Header, Left, Icon} from 'native-base';
 import Fire from '../../backend/Fire';
 import UserData from '../../backend/UserData';
 import firebase from 'firebase';
@@ -59,19 +60,25 @@ export default class Profile extends Component {
         
     
         return(
-            <View style = {styles.container}>
-                <Text style={styles.headline}>Profile</Text>
-                <Text style={styles.headline}>Name: {this.state.firstName + ' ' + this.state.lastName}</Text>
-                <Text style={styles.headline}>Gender: {this.state.gender}</Text>
-                <Text style={styles.headline}>Phone Number: {this.state.phoneNumber}</Text>
-                <Text style={styles.headline}>Email: {this.state.userEmail}</Text>
-
+            <View style = {{flex: 1}}>
+                <Header style = {styles.header}>
+                    <Left style = {{flex: 1, marginHorizontal: 10}}>
+                    <Icon name={'menu'} style={{color: 'black'}} onPress={() => this.props.navigation.openDrawer()}/>
+                    </Left>
+                </Header>
+                <View style = {styles.container}>
+                    <Text style={styles.headline}>Profile</Text>
+                    <Text style={styles.headline}>Name: {this.state.firstName + ' ' + this.state.lastName}</Text>
+                    <Text style={styles.headline}>Gender: {this.state.gender}</Text>
+                    <Text style={styles.headline}>Phone Number: {this.state.phoneNumber}</Text>
+                    <Text style={styles.headline}>Email: {this.state.userEmail}</Text>
                 {/*Testing for editing existing database data*/}
                 {/* <TextInput style = {styles.textInput}  onChangeText={(newName) => this.setState({newName})}
                     value={this.state.newName} ></TextInput>
                 <TouchableOpacity style = {styles.button} on onPress = { console.log('new namea =========> '+ this.state.newName),  this.editName.bind()} >
                     <Text style = {styles.buttonText}>Change name</Text>
                 </TouchableOpacity> */}
+                </View>
             </View>
         );
     }
