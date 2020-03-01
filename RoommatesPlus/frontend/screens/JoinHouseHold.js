@@ -1,28 +1,52 @@
 import React, { Component } from 'react';
 import { styles } from '../styles/style';
-import { Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
-import {openDatabase} from 'react-native-sqlite-storage';
-import * as SQLite from 'expo-sqlite'
+import { Text, View, TextInput } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import firebase from 'firebase';
 
-const db = SQLite.openDatabase("UserDatabase.db");
-
-export default class JoinHouseHold extends Component {
+export default class CreateHouseHold extends Component {
+    state = {
+        houseSearch: '',
+        houseFound: '',
+    }
     
+    getHouseholdInfo = () => {
+        console.log(this.state.houseSearch);
+        let houseHolds = firebase.firestore().collection('households');
+        let query = houseHolds.where('nickname', '==', this.state.houseSearch).get()
+        .then(snapshot => {
+            console.log("ran snapshot");
+            if (snapshot.empty){
+                console.log('Household not found');
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                console.log(doc.id, '=>', doc.data());
+                this.setState({
+                    houseFound: doc.data().nickname, 
+                })
+                           
+            })
+        })
+        .catch(err => {
+            console.log("Error getting household: ", err);
+        });       
+    }
+
     render() {
-        return (
+        return(
             <View style = {styles.container}>
-                <Text style={styles.headline}>Join a Household Name</Text>
-                <TextInput style = {styles.textInput} placeholder = "Enter the house ID"/>
+                <Text style={styles.headline}>Household Name</Text>
+                <TextInput style = {styles.textInput} placeholder = "Enter any name!" 
+                value = {this.state.houseSearch}
+                onChangeText={(houseSearch) => this.setState({houseSearch})}/>                 
                 
-                <TouchableOpacity style={styles.button} onPress={this.onPress}>
-                        <Text style={styles.buttonText}>Look up Household</Text>
+                <TouchableOpacity style = { styles.button } onPress = {this.getHouseholdInfo}>
+                    <Text style = { styles.buttonText }>Search</Text>
                 </TouchableOpacity>
-                
-                <TouchableOpacity style={styles.button} onPress={this.onPress}>
-                        <Text style={styles.buttonText}>Check Invites</Text>
-                </TouchableOpacity>
+                <Text>{this.state.houseFound}</Text>
             </View>
         );
     }
-
 }
