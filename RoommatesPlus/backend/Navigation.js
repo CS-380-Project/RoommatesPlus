@@ -53,7 +53,7 @@ const SignedIn = createMaterialBottomTabNavigator(
         }
       },
       Household: { 
-        screen: CreateHouseHold,
+        screen: JoinHouseHold,
         navigationOptions: {
           tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'home'} style={{ color: tintColor }} />)
         }
