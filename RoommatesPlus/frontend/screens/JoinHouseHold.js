@@ -10,56 +10,19 @@ export default class JoinHouseHold extends Component {
         houseSearch: '',
         houseFound: '',
         houseID: '',
-        usersExist: false,
     }
     
     joinHousehold = () =>{
-        let usersExist = false, data = {};
         let thisUser = Fire.shared.udi.uid;
-        // check if the users field exists
-        firebase.firestore().collection('households').doc(this.state.houseID).get()
-        .then(doc =>{
-            // should not run; already checked if household exists in getHouseholdInfo()
-            if (!doc.exists){ 
-                console.log("Household not found.");
-                return;
-            } else { 
-                if (doc.data().members[0] != " "){
-                    usersExist = true;
-                    console.log("Ran this fucking block: " + usersExist);
-                } else {
-                    console.log("There are no users.");
-                }
-
-                console.log("2 time: " + usersExist);
-            }  
+        let updateNested = firebase.firestore().collection('households').doc(this.state.houseID).update({
+            "members": firebase.firestore.FieldValue.arrayUnion(thisUser)
+        })
+        .then(() => {
+            console.log("success")
         })
         .catch(err => {
-            console.log("Error: ", err)
-        });
-
-        console.log("3 time: " + usersExist);
-
-        if (usersExist){
-            console.log("ran if");
-            // users list already exists; add this user to it
-            firebase.firestore().collection('households').doc(this.state.houseID).get()
-            .then(doc =>{
-                doc.update({
-                    members: arrayUnion(thisUser)
-                });
-            })
-            .catch(err => {
-                console.log("Error: ", err)
-            });
-        } else {
-            console.log("ran else");
-            // create a new users field and set it with the user email
-            firebase.firestore().collection('households').doc(this.state.houseID).set({
-                "members": [thisUser],
-            }, {merge: true});
-        }
-
+            console.log(err)
+        });          
     }
 
     getHouseholdInfo = () => {
