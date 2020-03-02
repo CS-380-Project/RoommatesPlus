@@ -46,15 +46,15 @@ export default class Login extends Component {
         </View>
         <View style={{justifyContent: 'center', height: 400 }}>
 
-        <Text style={styles.Loginheadline}>Email</Text>
+      <Text style={styles.Loginheadline}>Email</Text>
 
-<TextInput style = {styles.LogintextInput}  placeholder="Enter your email"
+<TextInput style = {styles.LogintextInput}  placeholder="Enter Your Email" placeholderTextColor = "white"
     onChangeText={(email) => this.setState({email})}
     value={this.state.email}/>
 
 <Text style={styles.Loginheadline}>Password</Text>
 
-<TextInput  secureTextEntry style = {styles.LogintextInput} placeholder =  "enter password"  onChangeText={(password) => this.setState({password})}
+<TextInput  secureTextEntry style = {styles.LogintextInput} placeholder =  "Enter Password" placeholderTextColor = "white"  onChangeText={(password) => this.setState({password})}
     value={this.state.password}/>
 
 <TouchableOpacity onPress = {() => {this.onLoginButtonPress(); this.props.navigation.navigate('Roommates');}}

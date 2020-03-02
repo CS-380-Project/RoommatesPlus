@@ -64,13 +64,16 @@ export const styles = StyleSheet.create({
       
   },
   Loginbutton: {
-    borderRadius: 35,
-    height: 70,
-    justifyContent:'center',
+    marginTop:10,
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#AB0032',
-    marginVertical: 5,
-    marginHorizontal: 20
+    marginBottom:20,
+    width:250,
+    borderRadius:30,
+    backgroundColor: "#AB0032",
+    marginHorizontal: 60,
     
   },
   
@@ -88,7 +91,6 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     marginHorizontal: 60,
     backgroundColor: 'grey',
-   
     
   },
   
@@ -130,13 +132,15 @@ export const styles = StyleSheet.create({
   },
 
   CreateAccountbutton: {
-    borderRadius: 35,
-    height: 70,
-    justifyContent:'center',
+    marginTop:10,
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#AB0032',
-    marginVertical: 20,
-    marginHorizontal: 40
+    marginBottom:20,
+    width:250,
+    borderRadius:30,
+    backgroundColor: "#AB0032"
     
   },
   
@@ -190,7 +194,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     borderBottomColor: '#AB0032',
     borderBottomWidth: 1,
-    marginHorizontal: 55,
+    //marginHorizontal: 55,
 
 },
 
@@ -207,16 +211,7 @@ CreateHouseholdheader: {
 
 },
 
-CreateHouseholdbutton: {
-  borderRadius: 35,
-  height: 70,
-  justifyContent:'center',
-  alignItems: 'center',
-  backgroundColor: '#AB0032',
-  marginVertical: 20,
-  marginHorizontal: 40
-  
-},
+
 
 CreateHouseholdtextInput: {
   height: 40,
@@ -229,13 +224,21 @@ CreateHouseholdtextInput: {
 },
 
 CreateHouseholdbutton: {
-  borderRadius: 35,
-  height: 70,
-  justifyContent:'center',
+  marginTop:10,
+  height:45,
+  flexDirection: 'row',
+  justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: '#AB0032',
-  marginVertical: 20,
-  marginHorizontal: 40
+  marginBottom:20,
+  width:250,
+  borderRadius:30,
+  backgroundColor: "#AB0032"
+  
+},
+CreateHouseholdbuttonText: {
+  fontWeight:'bold',
+  fontSize: 20,
+  color: 'white',
   
 },
 
@@ -249,18 +252,20 @@ Settingsheader: {
   marginBottom: 40,
   borderBottomColor: '#AB0032',
   borderBottomWidth: 1,
-  marginHorizontal: 55,
+  marginHorizontal: 65,
 
 },
 
 Settingsbutton: {
-  borderRadius: 35,
-  height: 70,
-  justifyContent:'center',
-  alignItems: 'center',
-  backgroundColor: '#AB0032',
-  marginVertical: 20,
-  marginHorizontal: 40
+  marginTop:10,
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom:20,
+    width:250,
+    borderRadius:30,
+    backgroundColor: "#AB0032"
   
 },
 

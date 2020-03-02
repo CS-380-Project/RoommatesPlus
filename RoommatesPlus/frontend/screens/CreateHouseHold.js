@@ -14,7 +14,7 @@ export default class CreateHouseHold extends Component {
           />
         </View>
                 <Text style={styles.CreateHouseholdheader}>Household Name</Text>
-                <TextInput style = {styles.CreateHouseholdtextInput} placeholder = "Enter any name!"> 
+                <TextInput style = {styles.CreateHouseholdtextInput} placeholder = "Enter any name!" placeholderTextColor = "black"> 
                 </TextInput>
                 
                 
