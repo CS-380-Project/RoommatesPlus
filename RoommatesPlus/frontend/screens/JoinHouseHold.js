@@ -4,6 +4,8 @@ import { Text, View, TextInput, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from 'firebase';
 import Fire from '../../backend/Fire';
+import {Header, Left, Icon} from 'native-base';
+
 
 export default class JoinHouseHold extends Component {
     state = {
@@ -66,6 +68,12 @@ export default class JoinHouseHold extends Component {
 
     render() {
         return(
+           <View style = {{flex: 1}}>
+                <Header style = {styles.header}>
+                    <Left style = {{flex: 1, marginHorizontal: 10}}>
+                        <Icon name={'menu'} style={{color: 'black'}} onPress={() => this.props.navigation.openDrawer()}/>
+                    </Left>
+                </Header>
             <View style = {styles.container}>
                 <Text style={styles.headline}>Household Name</Text>
                 <TextInput style = {styles.textInput} placeholder = "Enter any name!" 
@@ -76,6 +84,7 @@ export default class JoinHouseHold extends Component {
                     <Text style = { styles.buttonText }>Search</Text>
                 </TouchableOpacity>
             </View>
+          </View>
         );
     }
 }
