@@ -61,6 +61,10 @@ const SignedIn = createMaterialBottomTabNavigator(
           tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'check-square-o'} style={{ color: tintColor }} />)
         }
       },
+
+      Household: { 
+        screen: JoinHouseHold,
+     },
       Calendar: {
         screen: Calendar, 
         navigationOptions: {
