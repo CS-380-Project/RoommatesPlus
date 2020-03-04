@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { styles } from '../styles/style';
 import { Text, View, AsyncStorage,StyleSheet,Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {Header, Left, Icon} from 'native-base';
 import firebase from 'firebase'; 
 export default class Settings extends Component {
     

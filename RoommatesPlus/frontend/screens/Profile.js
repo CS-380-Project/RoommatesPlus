@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { styles } from '../styles/style';
 import { Text, View, TextInput,StyleSheet,Image,KeyboardAvoidingView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {Header, Left, Icon} from 'native-base';
 import Fire from '../../backend/Fire';
 import UserData from '../../backend/UserData';
 import firebase from 'firebase';
@@ -78,7 +79,8 @@ export default class Profile extends Component {
                 <TouchableOpacity style = {styles.button} on onPress = { console.log('new namea =========> '+ this.state.newName),  this.editName.bind()} >
                     <Text style = {styles.buttonText}>Change name</Text>
                 </TouchableOpacity> */}
-            </View>
+                </View>
+            
             
         );
     }

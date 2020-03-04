@@ -28,7 +28,7 @@ export default class Login extends Component {
 
   _signInAsync = async () => {
     await AsyncStorage.setItem('userToken', 'LoggedIn');
-    this.props.navigation.navigate('LoggedIn')
+    this.props.navigation.navigate('Loading')
     console.log('Now Switch to SignedIn Navigator')
   };
 
