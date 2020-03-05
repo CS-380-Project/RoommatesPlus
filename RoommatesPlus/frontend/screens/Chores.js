@@ -14,7 +14,6 @@ import {
 } from "react-native";
 import {Header, Left, Icon} from 'native-base';
 
-
 const isAndroid = Platform.OS == "android";
 const viewPadding = 10;
 
@@ -168,5 +167,4 @@ const styles = StyleSheet.create({
   },
  
 });
-
 //AppRegistry.registerComponent("TodoList", () => TodoList);

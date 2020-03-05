@@ -183,4 +183,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
       
   },
+  //-----------Calendar---------- 
+  Calendar:{
+    flex: 1,
+          backgroundColor: '#FFFFFF',
+          marginTop: 100,
+  }
 });
