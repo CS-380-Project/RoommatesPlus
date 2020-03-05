@@ -17,6 +17,7 @@
     "expo-asset": "^8.0.0",
     "expo-sqlite": "~8.0.0",
     "firebase": "^7.8.1",
+    "firebase-admin": "^8.9.2",
     "firestore": "^1.1.6",
     "native-base": "^2.13.8",
     "react": "~16.9.0",
