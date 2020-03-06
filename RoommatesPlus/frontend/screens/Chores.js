@@ -6,7 +6,6 @@ import {Header, Left, Icon} from 'native-base';
 import firebase from 'firebase';
 import Fire from "../../backend/Fire";
 
-
 const isAndroid = Platform.OS == "android";
 const viewPadding = 10;
 
@@ -209,3 +208,4 @@ const styles = StyleSheet.create({
   },
  
 });
+
