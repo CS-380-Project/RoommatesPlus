@@ -11,7 +11,7 @@ export default class AccountInfo extends Component {
         firstName: '',
         lastName: '',
         gender: '',
-        houseID: '',
+        householdID: null,
         phoneNumber: ''
     };
 
@@ -21,6 +21,7 @@ export default class AccountInfo extends Component {
             first_name: this.state.firstName,
             gender: this.state.gender,
             last_name: this.state.lastName,
+            houseID: 'null',
             phone: this.state.phoneNumber,
         })
         .then(() => {
@@ -35,8 +36,7 @@ export default class AccountInfo extends Component {
 
     _createAccountInAsync = async () => {
         await AsyncStorage.setItem('userToken', 'LoggedIn');
-        this.props.navigation.navigate('LoggedIn')
-        console.log('Account Created, switching to LoggedIn Navigator')
+        this.props.navigation.navigate('NoHousehold')
     };
 
     render() {
