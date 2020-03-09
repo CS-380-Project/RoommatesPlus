@@ -28,7 +28,7 @@ import Messaging from '../frontend/screens/Messaging';
 import Calendar from '../frontend/screens/Calendar';
 import ChatScreen from '../frontend/screens/ChatScreen';
 // Load Screen
-const AuthLoading = AuthLoadingScreen
+let AuthLoading = AuthLoadingScreen
 
 // Stack Navigator for Login & Create Account Screens
 const SignedOut = createStackNavigator({
@@ -53,6 +53,21 @@ const SignedOut = createStackNavigator({
     },
 });
 
+const CreateJoinHouse = createStackNavigator({
+  JoinHouseScreen: {
+    screen: JoinHouseHold,
+    navigationOptions: {
+      headerShown: false
+    } 
+  },
+  CreateHouseScreen: {
+    screen: CreateHouseHold,
+    navigationOptions: {
+      headerShown: false
+    } 
+  },
+});
+
 // Bottom Tab Navigator for Profile, Household, and Settings Screens
 const SignedIn = createMaterialBottomTabNavigator(
     {
@@ -62,10 +77,6 @@ const SignedIn = createMaterialBottomTabNavigator(
           tabBarIcon: ({ tintColor, focused }) => (<Icon size={25} name={'check-square-o'} style={{ color: tintColor }} />)
         }
       },
-
-      Household: { 
-        screen: JoinHouseHold,
-     },
       Calendar: {
         screen: Calendar, 
         navigationOptions: {
@@ -121,12 +132,6 @@ const SignedIn = createMaterialBottomTabNavigator(
           drawerIcon: ({ tintColor, focused }) => (<Icon size={25} name={'user'} style={{ color: tintColor }} />)
         }
       },
-      'My Household': { 
-        screen: JoinHouseHold,
-        navigationOptions: {
-          drawerIcon: ({ tintColor, focused }) => (<MIcon size={25} name={'home-account'} style={{ color: tintColor }} />)
-        }
-      },
       Settings: {
         screen: Settings,
         navigationOptions: {
@@ -154,6 +159,7 @@ const RootNavigator = createSwitchNavigator(
       Loading: AuthLoading,
       LoggedIn: ProfileDrawer,
       LoggedOut: SignedOut,
+      NoHousehold: CreateJoinHouse,
     },
     {
       initialRouteName: 'Loading',
