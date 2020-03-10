@@ -28,7 +28,7 @@ import Messaging from '../frontend/screens/Messaging';
 import Calendar from '../frontend/screens/Calendar';
 
 // Load Screen
-let AuthLoading = AuthLoadingScreen
+const AuthLoading = AuthLoadingScreen
 
 // Stack Navigator for Login & Create Account Screens
 const SignedOut = createStackNavigator({
@@ -49,23 +49,7 @@ const SignedOut = createStackNavigator({
       navigationOptions: {
         headerShown: false
       }
-      
     },
-});
-
-const CreateJoinHouse = createStackNavigator({
-  JoinHouseScreen: {
-    screen: JoinHouseHold,
-    navigationOptions: {
-      headerShown: false
-    } 
-  },
-  CreateHouseScreen: {
-    screen: CreateHouseHold,
-    navigationOptions: {
-      headerShown: false
-    } 
-  },
 });
 
 // Bottom Tab Navigator for Profile, Household, and Settings Screens
@@ -89,14 +73,13 @@ const SignedIn = createMaterialBottomTabNavigator(
           tabBarIcon: ({ tintColor, focused }) => (<Icon size={22} name={'users'} style={{ color: tintColor }} />)
         }
       },
-      Messaging: {
+      Messages: {
         screen: Messaging,
         navigationOptions: {
           tabBarIcon: ({ tintColor, focused }) => (<Icon size={22} name={'comments'} style={{ color: tintColor }} />)
         }
-      },
+      }
     },
-    
     {
       initialRouteName: 'Chores',
       shifting: 'true',
@@ -128,6 +111,12 @@ const SignedIn = createMaterialBottomTabNavigator(
           drawerIcon: ({ tintColor, focused }) => (<Icon size={25} name={'user'} style={{ color: tintColor }} />)
         }
       },
+      'My Household': { 
+        screen: JoinHouseHold,
+        navigationOptions: {
+          drawerIcon: ({ tintColor, focused }) => (<MIcon size={25} name={'home-account'} style={{ color: tintColor }} />)
+        }
+      },
       Settings: {
         screen: Settings,
         navigationOptions: {
@@ -155,7 +144,6 @@ const RootNavigator = createSwitchNavigator(
       Loading: AuthLoading,
       LoggedIn: ProfileDrawer,
       LoggedOut: SignedOut,
-      NoHousehold: CreateJoinHouse,
     },
     {
       initialRouteName: 'Loading',
