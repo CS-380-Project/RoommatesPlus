@@ -26,7 +26,6 @@ import HouseHoldMembers from '../frontend/screens/HouseHoldMembers';
 import Chores from '../frontend/screens/Chores';
 import Messaging from '../frontend/screens/Messaging';
 import Calendar from '../frontend/screens/Calendar';
-import ChatScreen from '../frontend/screens/ChatScreen';
 
 // Load Screen
 let AuthLoading = AuthLoadingScreen
