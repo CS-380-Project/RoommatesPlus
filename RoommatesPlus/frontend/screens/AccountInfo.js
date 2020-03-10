@@ -11,17 +11,16 @@ export default class AccountInfo extends Component {
         firstName: '',
         lastName: '',
         gender: '',
-        householdID: null,
+        houseID: '',
         phoneNumber: ''
     };
 
-    onUserInfoSubmitPress = async() => {
-        firebase.firestore().collection('users').doc(Fire.shared.udi.uid).set({
+    onUserInfoSubmitPress = () => {
+        firebase.firestore().collection('users').add({
             email: Fire.shared.udi.email,
             first_name: this.state.firstName,
             gender: this.state.gender,
             last_name: this.state.lastName,
-            houseID: 'null',
             phone: this.state.phoneNumber,
         })
         .then(() => {
@@ -36,9 +35,8 @@ export default class AccountInfo extends Component {
 
     _createAccountInAsync = async () => {
         await AsyncStorage.setItem('userToken', 'LoggedIn');
-        await AsyncStorage.setItem("userUID", Fire.shared.udi.uid);
-        
-        this.props.navigation.navigate('NoHousehold')
+        this.props.navigation.navigate('LoggedIn')
+        console.log('Account Created, switching to LoggedIn Navigator')
     };
 
     render() {
