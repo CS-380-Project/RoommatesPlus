@@ -9,13 +9,14 @@ class FireMessage {
   init = () => {
     if (!firebase.apps.length) {
       firebase.initializeApp({
-        apiKey: "AIzaSyBDs8EtbFhh6Cx7SlkjN98laV67X0Q6Aes",
-        authDomain: "hello-world-34ca8.firebaseapp.com",
-        databaseURL: "https://hello-world-34ca8.firebaseio.com",
-        projectId: "hello-world-34ca8",
-        storageBucket: "hello-world-34ca8.appspot.com",
-        messagingSenderId: "829082593909",
-        appId: "1:829082593909:web:f4490ce4cd84434dd0e63c",   
+        apiKey: "AIzaSyA4RsDJumMfFG6BGnZv-mdNpSDEq8QbdC8",
+        authDomain: "roommatesplus-15f85.firebaseapp.com",
+        databaseURL: "https://roommatesplus-15f85.firebaseio.com",
+        projectId: "roommatesplus-15f85",
+        storageBucket: "roommatesplus-15f85.appspot.com",
+        messagingSenderId: "300422015917",
+        appId: "1:300422015917:web:cf273f19cf90e3b595cf24",
+        measurementId: "G-B4PHE4YGZK" 
       });
     }
   };
@@ -38,7 +39,7 @@ class FireMessage {
   }
 
   get ref() {
-    return firebase.database().ref('messages');
+    return firebase.database().ref('users');
   }
 
   parse = snapshot => {
@@ -63,9 +64,9 @@ class FireMessage {
     return firebase.database.ServerValue.TIMESTAMP;
   }
   // send the message to the Backend
-  send = messages => {
-    for (let i = 0; i < messages.length; i++) {
-      const { text, user } = messages[i];
+  send = users => {
+    for (let i = 0; i < users.length; i++) {
+      const { text, user } = users[i];
       const message = {
         text,
         user,
@@ -75,7 +76,7 @@ class FireMessage {
     }
   };
 
-  append = message => this.ref.push(message);
+  append = users => this.ref.push(users);
 
   // close the connection to the Backend
   off() {
