@@ -1,9 +1,19 @@
 //todo app https://codeburst.io/todo-app-with-react-native-f889e97e398e
 import React, { Component } from "react";
-import {AppRegistry, StyleSheet, Text, View, FlatList,
-   AsyncStorage, Button, TextInput, Keyboard, Platform} from "react-native";
-import {Header, Left, Icon} from 'native-base';
-import firebase from 'firebase';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  AsyncStorage,
+  Button,
+  TextInput,
+  Keyboard,
+  Platform
+} from "react-native";
+import { Header, Left, Icon } from "native-base";
+import firebase from "firebase";
 import Fire from "../../backend/Fire";
 
 const isAndroid = Platform.OS == "android";
@@ -14,12 +24,62 @@ export default class Chores extends Component {
   state = {
     tasks: [],
     text: "",
-    choreListId: null
+    dbChoreList: null
   };
 
   changeTextHandler = text => {
-    this.setState({ text: text});
+    this.setState({ text: text });
   };
+
+  dbChoreListHandler = list => {
+    this.setState({dbChoreList: list});
+  };
+
+  updateTasksFromDatabase = () => {
+
+    let i;
+    for (i = 0; i <= this.state.tasks.length; i++) {
+      console.log("deleting task: " + i);
+      this.deleteTask(i);
+    }
+
+    let cityRef = firebase
+      .firestore()
+      .collection("chores")
+      .doc("C3MyRnRY1RZZxNkIYF1t");
+    let getDoc = cityRef
+      .get()
+      .then(doc => {
+        if (!doc.exists) {
+          console.log("No such document!");
+        } else {
+          console.log("Document data:", doc.data());
+          
+          this.dbChoreListHandler(doc.data().choreList);
+
+          console.log("dbChoreList: " + this.state.dbChoreList[0]);
+
+          console.log("\n\n length of tasks " + this.state.tasks.length);
+      
+          
+          console.log("\n\n first item in chorelist " +  this.state.dbChoreList[0]);
+          for (i = 0; i < this.state.dbChoreList.length; i++) {
+           console.log("\tdbchoreList " + i + ": " + this.state.dbChoreList[i]);
+            this.changeTextHandler(this.state.dbChoreList[i]);
+            console.log("\t\tthis.state.text: " + this.state.text);
+            this.addTask();
+          }
+        }
+      })
+      .catch(err => {
+        console.log("Error getting document", err);
+      });
+
+
+   
+  };
+
+
 
   addTask = () => {
     let notEmpty = this.state.text.trim().length > 0;
@@ -28,57 +88,59 @@ export default class Chores extends Component {
         prevState => {
           let { tasks, text } = prevState;
           return {
-            tasks: tasks.concat({ key: tasks.length, text:text}),
+            tasks: tasks.concat({ key: tasks.length, text: text }),
             text: ""
           };
         },
         () => Tasks.save(this.state.tasks)
       );
-      
     }
   };
 
   addTaskToDatabase = () => {
     this.addTask();
     console.log("Addding TASK ");
-      console.log("Addding " + this.state.text + " to database");
-     // let admin = require('firebase-admin');
-      let choreRef = firebase.firestore().collection('chores').doc('C3MyRnRY1RZZxNkIYF1t');
-      let choreUnion = choreRef.update({
-          choreList: firebase.firestore.FieldValue.arrayUnion(this.state.text)
-        })
-        .then(() => {
-            console.log("success")
-        })
-        .catch(err => {
-            console.log(err)
-        });          
-
-       
+    console.log("Addding " + this.state.text + " to database");
+    let choreRef = firebase
+      .firestore()
+      .collection("chores")
+      .doc("C3MyRnRY1RZZxNkIYF1t");
+    let choreUnion = choreRef
+      .update({
+        choreList: firebase.firestore.FieldValue.arrayUnion(this.state.text)
+      })
+      .then(() => {
+        console.log("success");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
-
-  deleteTaskToDatabase = (index) => {
-      let taskArray = Tasks.convertToStringWithSeparators(this.state.tasks).split('||');
-      this.deleteTask();
-      console.log("DELETING TASK ");
-      console.log("DELETING " + this.state.text + " from database");
-      let choreRef = firebase.firestore().collection('chores').doc('C3MyRnRY1RZZxNkIYF1t');
-      let choreUnion = choreRef.update({
-          choreList: firebase.firestore.FieldValue.arrayRemove(taskArray[index])
-        })
-        .then(() => {
-            console.log("success")
-        })
-        .catch(err => {
-            console.log(err)
-        });          
-
-       
+  deleteTaskFromDatabase = index => {
+    let taskArray = Tasks.convertToStringWithSeparators(this.state.tasks).split(
+      "||"
+    );
+    this.deleteTask(index);
+    console.log("DELETING TASK ");
+    console.log("DELETING " + this.state.text + " from database");
+    let choreRef = firebase
+      .firestore()
+      .collection("chores")
+      .doc("C3MyRnRY1RZZxNkIYF1t");
+    let choreUnion = choreRef
+      .update({
+        choreList: firebase.firestore.FieldValue.arrayRemove(taskArray[index])
+      })
+      .then(() => {
+        console.log("success");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   deleteTask = i => {
-    
     this.setState(
       prevState => {
         let tasks = prevState.tasks.slice();
@@ -105,48 +167,59 @@ export default class Chores extends Component {
   }
 
   render() {
-    taskList = Tasks.convertToStringWithSeparators(this.state.tasks).split('||');
+    taskList = Tasks.convertToStringWithSeparators(this.state.tasks).split(
+      "||"
+    );
+
+    console.ignoredYellowBox = true;
     return (
-      
-        <View style = {{flex: 1}}>
-        <Header style = {styles.header}>
-            <Left style = {{flex: 1, marginHorizontal: 10}}>
-            <Icon name={'menu'} style={{color: 'black'}} onPress={() => this.props.navigation.openDrawer()}/>
-            </Left>
+      <View style={{ flex: 1 }}>
+        <Header style={styles.header}>
+          <Left style={{ flex: 1, marginHorizontal: 10 }}>
+            <Icon
+              name={"menu"}
+              style={{ color: "black" }}
+              onPress={() => this.props.navigation.openDrawer()}
+            />
+          </Left>
         </Header>
-      <View
-        style={[styles.container, { paddingBottom: this.state.viewPadding }]}
-      >
-        <FlatList
-          style={styles.list}
-          data={this.state.tasks}
-          renderItem={({ item, index }) =>
-            <View>
-              <View style={styles.listItemCont}>
-                <Text style={styles.listItem}>
-                  {item.text}
-                </Text>
-                <Button title="X" onPress={() => this.deleteTaskToDatabase(index)} />
+        <View
+          style={[styles.container, { paddingBottom: this.state.viewPadding }]}
+        >
+          <FlatList
+            style={styles.list}
+            data={this.state.tasks}
+            renderItem={({ item, index }) => (
+              <View>
+                <View style={styles.listItemCont}>
+                  <Text style={styles.listItem}>{item.text}</Text>
+                  <Button
+                    title="X"
+                    onPress={() => this.deleteTaskFromDatabase(index)}
+                  />
+                </View>
+                <View style={styles.hr} />
               </View>
-              <View style={styles.hr} />
-            </View>}
-        />
-        <TextInput
-          style={styles.textInput}
-          onChangeText={this.changeTextHandler}
-          onSubmitEditing={this.addTaskToDatabase}
-          value={this.state.text}
-          placeholder="Add Chore"
-          returnKeyType="done"
-          returnKeyLabel="done"
-        />
-      </View>
+            )}
+          />
+          <Button
+            title="update"
+            onPress={this.updateTasksFromDatabase}
+          ></Button>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={this.changeTextHandler}
+            onSubmitEditing={this.addTaskToDatabase}
+            value={this.state.text}
+            placeholder="Add Chore"
+            returnKeyType="done"
+            returnKeyLabel="done"
+          />
+        </View>
       </View>
     );
   }
-};
- 
-
+}
 
 let Tasks = {
   convertToArrayOfObject(tasks, callback) {
@@ -177,7 +250,7 @@ const styles = StyleSheet.create({
     paddingTop: 20
   },
   header: {
-    backgroundColor: '#AB0032'
+    backgroundColor: "#AB0032"
   },
   list: {
     width: "100%"
@@ -197,15 +270,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   textInput: {
-    backgroundColor: '#ff5c5c',
-    color: 'black',
+    backgroundColor: "#ff5c5c",
+    color: "black",
     height: 40,
     paddingRight: 10,
     paddingLeft: 10,
     borderColor: "gray",
     borderWidth: isAndroid ? 0 : 1,
     width: "100%"
-  },
- 
+  }
 });
-
