@@ -51,22 +51,7 @@ const SignedOut = createStackNavigator({
         headerShown: false
       }
     },
-});
 
-const MessagingNav = createStackNavigator({
-  NameScreen: {
-    screen: Messaging,
-    navigationOptions: {
-      headerShown: false
-    } 
-  },
-  ChatRoomScreen: {
-    screen: ChatScreen,
-    navigationOptions: {
-      headerShown: false
-    }
-  },   
-  
 });
 
 // Bottom Tab Navigator for Profile, Household, and Settings Screens
@@ -100,7 +85,7 @@ const SignedIn = createMaterialBottomTabNavigator(
           tabBarIcon: ({ tintColor, focused }) => (<Icon size={22} name={'comments'} style={{ color: tintColor }} />)
         }
       },
-      ChatRoomScreen: {
+      ChatScreen: {
         screen: ChatScreen,
       }, 
 

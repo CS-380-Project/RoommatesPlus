@@ -9,14 +9,13 @@ class FireMessage {
   init = () => {
     if (!firebase.apps.length) {
       firebase.initializeApp({
-        apiKey: "AIzaSyA4RsDJumMfFG6BGnZv-mdNpSDEq8QbdC8",
-        authDomain: "roommatesplus-15f85.firebaseapp.com",
-        databaseURL: "https://roommatesplus-15f85.firebaseio.com",
-        projectId: "roommatesplus-15f85",
-        storageBucket: "roommatesplus-15f85.appspot.com",
-        messagingSenderId: "300422015917",
-        appId: "1:300422015917:web:cf273f19cf90e3b595cf24",
-        measurementId: "G-B4PHE4YGZK"      
+        apiKey: "AIzaSyBDs8EtbFhh6Cx7SlkjN98laV67X0Q6Aes",
+        authDomain: "hello-world-34ca8.firebaseapp.com",
+        databaseURL: "https://hello-world-34ca8.firebaseio.com",
+        projectId: "hello-world-34ca8",
+        storageBucket: "hello-world-34ca8.appspot.com",
+        messagingSenderId: "829082593909",
+        appId: "1:829082593909:web:f4490ce4cd84434dd0e63c",   
       });
     }
   };

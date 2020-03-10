@@ -8,7 +8,7 @@ class Messaging extends Component {
     state = { name: '' }
     onPress = () => {
         // 1.
-        this.props.navigation.navigate('ChatRoomScreen', {name: this.state.name})
+        this.props.navigation.navigate("ChatScreen", {name: this.state.name})
     }
     
     onChangeText = name => this.setState({ name });
