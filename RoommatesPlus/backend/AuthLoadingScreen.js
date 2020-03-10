@@ -7,18 +7,15 @@ import Fire from './Fire';
 export default class AuthLoadingScreen extends React.Component {
     constructor() {
       super();
-     //this.findDocId()
+     this.findDocId()
       this._bootstrapAsync()
-      this.temp()
+      
       }
 
     state = {
       householdID: '',
     }
-    temp = async () => {
-      await AsyncStorage.clear();
-      console.log('cleared storage')
-    }
+   
     // Fetch the token from storage then navigate to our appropriate place
     _bootstrapAsync = async () => {
       let userToken = await AsyncStorage.getItem('userToken');
