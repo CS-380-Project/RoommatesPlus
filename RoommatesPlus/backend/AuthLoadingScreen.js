@@ -18,37 +18,43 @@ export default class AuthLoadingScreen extends React.Component {
 
     // Fetch the token from storage then navigate to our appropriate place
     _bootstrapAsync = async () => {
-      
+      console.log('Inside _bootstrapAsync')
       let userToken = await AsyncStorage.getItem('userToken');
   
+      console.log('after grabbing userToken from async storage')
+
       if(userToken == 'LoggedIn') {
+        console.log('userToken: LoggedIn')
         
-        let email = this.state.emailCur
-        let userRef = firebase.firestore().collection("users")
-        let query = userRef
-          .where("email", "==", email)
-          .get()
-          .then(snapshot => {
-            if (snapshot.empty) {
-              console.log("No matching documents.")
+        let thisUserID = await AsyncStorage.getItem('userUID')
+        
+        console.log('thisUserHouse', thisUserID)
+
+        // let updateNested = firebase.firestore().collection("households").doc(this.state.houseID)
+        let userRef = firebase.firestore().collection("users").doc(thisUserID).get()
+          .then(doc => {
+            if (!doc.exists) {
+              console.log("No doc exists.")
               return;
             }
-            snapshot.forEach(doc => {
-              console.log(doc.id, "=>", doc.data())
-              
+            else {
               this.state.householdID = doc.data().houseID
 
-              if (this.state.householdID == '') {
+              if (this.state.householdID == '' || this.state.householdID == 'null') {
                 console.log('houseID null!')
                 this.props.navigation.navigate("NoHousehold");
               } else {
                 console.log('houseID not null')
                 this.props.navigation.navigate("LoggedIn");
               }
-            });
-          });
+            }
+          })  
+          .catch(err => {
+            console.log('error retrieving doc.')
+          });  
       }  
       else {
+        console.log('User signed out, navigating to LoggedOut state')
         this.props.navigation.navigate('LoggedOut');
       }
     };

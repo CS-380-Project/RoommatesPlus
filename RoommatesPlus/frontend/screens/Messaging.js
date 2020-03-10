@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
+import ChatScreen from './ChatScreen';
 
 class Messaging extends React.Component {
     state = { name: '' }
     onPress = () => {
         // 1.
-        this.props.navigation.navigate('ChatScreen', { name: this.state.name });
+        this.props.navigation.navigate('ChatScreen');
       }
     onChangeText = name => this.setState({ name });
     render() {

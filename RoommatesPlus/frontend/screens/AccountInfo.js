@@ -15,8 +15,8 @@ export default class AccountInfo extends Component {
         phoneNumber: ''
     };
 
-    onUserInfoSubmitPress = () => {
-        firebase.firestore().collection('users').add({
+    onUserInfoSubmitPress = async() => {
+        firebase.firestore().collection('users').doc(Fire.shared.udi.uid).set({
             email: Fire.shared.udi.email,
             first_name: this.state.firstName,
             gender: this.state.gender,
@@ -36,6 +36,8 @@ export default class AccountInfo extends Component {
 
     _createAccountInAsync = async () => {
         await AsyncStorage.setItem('userToken', 'LoggedIn');
+        await AsyncStorage.setItem("userUID", Fire.shared.udi.uid);
+        
         this.props.navigation.navigate('NoHousehold')
     };
 

@@ -9,9 +9,9 @@ import FireMessage from '../../backend/fireMessage';
 
 class ChatScreen extends React.Component {
 
-  static navigationOptions = ({ navigation }) => ({
-    title: (navigation.state.params || {}).name || 'Chat!',
-  });
+  // static navigationOptions = ({ navigation }) => ({
+  //   title: (navigation.state.params || {}).name || 'Chat!',
+  // });
 
   state = {
     messages: [],
@@ -19,13 +19,13 @@ class ChatScreen extends React.Component {
 
   get user() {
     return {
-      name: this.props.navigation.state.params.name,
+      name: 'tester',
       _id: FireMessage.shared.uid,
     };
   }
 
   render() {
-       const chat=<GiftedChat messages={this.state.messages} onSend={FireMessage.shared.send} user={this.user}/>;
+       let chat=<GiftedChat messages={this.state.messages} onSend={FireMessage.shared.send} user={this.user}/>;
 
         if(Platform.OS=='android'){
             return(

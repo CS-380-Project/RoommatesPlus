@@ -27,13 +27,16 @@ export default class Login extends Component {
 
   onLoginButtonPress = async () => {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => {
-        AsyncStorage.setItem("userToken", "LoggedIn");
+      .then(async () => {
+        await AsyncStorage.setItem("userToken", "LoggedIn");
+        await AsyncStorage.setItem("userUID", Fire.shared.udi.uid);
+        
         this.props.navigation.navigate('Loading')
         console.log("login successful");
       })
       .catch(error => {
         Alert.alert("Invalid email or password!");
+        console.log(error.message)
         console.log("Login Failed");
       });
   };
