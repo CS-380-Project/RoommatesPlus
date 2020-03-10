@@ -26,6 +26,7 @@ import HouseHoldMembers from '../frontend/screens/HouseHoldMembers';
 import Chores from '../frontend/screens/Chores';
 import Messaging from '../frontend/screens/Messaging';
 import Calendar from '../frontend/screens/Calendar';
+import ChatScreen from '../frontend/screens/ChatScreen';
 
 // Load Screen
 const AuthLoading = AuthLoadingScreen
@@ -50,6 +51,22 @@ const SignedOut = createStackNavigator({
         headerShown: false
       }
     },
+});
+
+const MessagingNav = createStackNavigator({
+  NameScreen: {
+    screen: Messaging,
+    navigationOptions: {
+      headerShown: false
+    } 
+  },
+  ChatRoomScreen: {
+    screen: ChatScreen,
+    navigationOptions: {
+      headerShown: false
+    }
+  },   
+  
 });
 
 // Bottom Tab Navigator for Profile, Household, and Settings Screens
@@ -82,7 +99,11 @@ const SignedIn = createMaterialBottomTabNavigator(
         navigationOptions: {
           tabBarIcon: ({ tintColor, focused }) => (<Icon size={22} name={'comments'} style={{ color: tintColor }} />)
         }
-      }
+      },
+      ChatRoomScreen: {
+        screen: ChatScreen,
+      }, 
+
     },
     {
       initialRouteName: 'Chores',

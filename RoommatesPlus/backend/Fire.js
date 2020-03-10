@@ -10,16 +10,21 @@ class Fire {
         this.docId = '';
     }
     
-    init = () => firebase.initializeApp({
-        apiKey: "AIzaSyA4RsDJumMfFG6BGnZv-mdNpSDEq8QbdC8",
-        authDomain: "roommatesplus-15f85.firebaseapp.com",
-        databaseURL: "https://roommatesplus-15f85.firebaseio.com",
-        projectId: "roommatesplus-15f85",
-        storageBucket: "roommatesplus-15f85.appspot.com",
-        messagingSenderId: "300422015917",
-        appId: "1:300422015917:web:cf273f19cf90e3b595cf24",
-        measurementId: "G-B4PHE4YGZK"
-    });
+    init = () => {
+        if (!firebase.apps.length) {
+          firebase.initializeApp({
+            apiKey: "AIzaSyA4RsDJumMfFG6BGnZv-mdNpSDEq8QbdC8",
+            authDomain: "roommatesplus-15f85.firebaseapp.com",
+            databaseURL: "https://roommatesplus-15f85.firebaseio.com",
+            projectId: "roommatesplus-15f85",
+            storageBucket: "roommatesplus-15f85.appspot.com",
+            messagingSenderId: "300422015917",
+            appId: "1:300422015917:web:cf273f19cf90e3b595cf24",
+            measurementId: "G-B4PHE4YGZK"      
+          });
+        }
+    };
+    
 
     observeAuth() {
         firebase.auth().onAuthStateChanged(function(user) {
