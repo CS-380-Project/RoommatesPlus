@@ -24,7 +24,15 @@ export default class AuthLoadingScreen extends React.Component {
         
         let thisUserID = await AsyncStorage.getItem('userUID')
         
-        firebase.firestore().collection("users").doc(thisUserID).get()
+        console.log('userUID: ', thisUserID)
+
+        if(thisUserID == null) {
+          await AsyncStorage.clear();
+          console.log('userUID null, clearing async storage')
+        }
+
+        await firebase.firestore().collection("users").doc(thisUserID)
+          .get()
           .then(doc => {
             if (!doc.exists) {
               console.log("No such doc exists given thisUserID.")
@@ -43,7 +51,7 @@ export default class AuthLoadingScreen extends React.Component {
             }
           })  
           .catch(err => {
-            console.log('error retrieving this users doc.')
+              console.log('error retrieving this users doc.')
           });  
       }  
       else {
