@@ -10,11 +10,13 @@ import {
   Button,
   TextInput,
   Keyboard,
-  Platform
+  Platform,
+  RefreshControl
 } from "react-native";
 import { Header, Left, Icon } from "native-base";
 import firebase from "firebase";
 import Fire from "../../backend/Fire";
+import { ScrollView } from "react-native-gesture-handler";
 
 const isAndroid = Platform.OS == "android";
 const viewPadding = 10;
@@ -24,7 +26,8 @@ export default class Chores extends Component {
   state = {
     tasks: [],
     text: "",
-    dbChoreList: null
+    dbChoreList: null,
+    refreshing: false
   };
 
   changeTextHandler = text => {
@@ -32,15 +35,24 @@ export default class Chores extends Component {
   };
 
   dbChoreListHandler = list => {
-    this.setState({dbChoreList: list});
+    this.setState({ dbChoreList: list });
+  };
+
+  _onRefresh = () => {
+    this.setState({ refreshing: true });
+    this.updateTasksFromDatabase().then(() => {
+      this.setState({ refreshing: false });
+    });
   };
 
   updateTasksFromDatabase = () => {
-
     let i;
     for (i = 0; i <= this.state.tasks.length; i++) {
-      console.log("deleting task: " + i);
-      this.deleteTask(i);
+      let taskArray = Tasks.convertToStringWithSeparators(
+        this.state.tasks
+      ).split("||");
+      console.log("\n\n\n\tdeleting task: " + i + " : " + taskArray[i]);
+      this.deleteTask(0);
     }
 
     let cityRef = firebase
@@ -54,17 +66,25 @@ export default class Chores extends Component {
           console.log("No such document!");
         } else {
           console.log("Document data:", doc.data());
-          
+
           this.dbChoreListHandler(doc.data().choreList);
 
           console.log("dbChoreList: " + this.state.dbChoreList[0]);
 
           console.log("\n\n length of tasks " + this.state.tasks.length);
-      
-          
-          console.log("\n\n first item in chorelist " +  this.state.dbChoreList[0]);
+
+          for (i = 0; i < this.state.tasks.length; i++) {
+            console.log("deleting task: " + i);
+            this.deleteTask(i);
+          }
+
+          console.log(
+            "\n\n first item in chorelist " + this.state.dbChoreList[0]
+          );
           for (i = 0; i < this.state.dbChoreList.length; i++) {
-           console.log("\tdbchoreList " + i + ": " + this.state.dbChoreList[i]);
+            console.log(
+              "\tdbchoreList " + i + ": " + this.state.dbChoreList[i]
+            );
             this.changeTextHandler(this.state.dbChoreList[i]);
             console.log("\t\tthis.state.text: " + this.state.text);
             this.addTask();
@@ -74,12 +94,35 @@ export default class Chores extends Component {
       .catch(err => {
         console.log("Error getting document", err);
       });
-
-
-   
   };
 
+  update = () => {
+    this.state.tasks.forEach(deleteAll);
 
+    function deleteAll(item, index) {
+      this.deleteTask(index);
+    }
+
+    for (i = 0; i < this.state.tasks.length; i++) {
+      console.log("deleting task: " + i);
+      this.deleteTask(i);
+    }
+    for (i = this.state.tasks.length; i > 0; i--) {
+      console.log("deleting task: " + i);
+      this.deleteTask(i);
+    }
+    for (i = this.state.tasks.length; i >= 0; i--) {
+      console.log("deleting task: " + i);
+      this.deleteTask(i);
+    }
+
+    this.updateTasksFromDatabase();
+  };
+
+  deleteAll = (item, index) => {
+    console.log("we delete " + index);
+    this.deleteTask(index);
+  };
 
   addTask = () => {
     let notEmpty = this.state.text.trim().length > 0;
@@ -171,7 +214,7 @@ export default class Chores extends Component {
       "||"
     );
 
-    console.ignoredYellowBox = true;
+    // console.ignoredYellowBox = true;
     return (
       <View style={{ flex: 1 }}>
         <Header style={styles.header}>
@@ -183,39 +226,47 @@ export default class Chores extends Component {
             />
           </Left>
         </Header>
-        <View
-          style={[styles.container, { paddingBottom: this.state.viewPadding }]}
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this.updateTasksFromDatabase}
+            />
+          }
         >
-          <FlatList
-            style={styles.list}
-            data={this.state.tasks}
-            renderItem={({ item, index }) => (
-              <View>
-                <View style={styles.listItemCont}>
-                  <Text style={styles.listItem}>{item.text}</Text>
-                  <Button
-                    title="X"
-                    onPress={() => this.deleteTaskFromDatabase(index)}
-                  />
+          <View
+            style={[
+              styles.container,
+              { paddingBottom: this.state.viewPadding }
+            ]}
+          >
+            <FlatList
+              style={styles.list}
+              data={this.state.tasks}
+              renderItem={({ item, index }) => (
+                <View>
+                  <View style={styles.listItemCont}>
+                    <Text style={styles.listItem}>{item.text}</Text>
+                    <Button
+                      title="X"
+                      onPress={() => this.deleteTaskFromDatabase(index)}
+                    />
+                  </View>
+                  <View style={styles.hr} />
                 </View>
-                <View style={styles.hr} />
-              </View>
-            )}
-          />
-          <Button
-            title="update"
-            onPress={this.updateTasksFromDatabase}
-          ></Button>
-          <TextInput
-            style={styles.textInput}
-            onChangeText={this.changeTextHandler}
-            onSubmitEditing={this.addTaskToDatabase}
-            value={this.state.text}
-            placeholder="Add Chore"
-            returnKeyType="done"
-            returnKeyLabel="done"
-          />
-        </View>
+              )}
+            />
+            <TextInput
+              style={styles.textInput}
+              onChangeText={this.changeTextHandler}
+              onSubmitEditing={this.addTaskToDatabase}
+              value={this.state.text}
+              placeholder="Add Chore"
+              returnKeyType="done"
+              returnKeyLabel="done"
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }
