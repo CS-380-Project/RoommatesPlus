@@ -3,7 +3,7 @@
  const cwuColor = '#AB0032'
 
  // styles
-export const styles = StyleSheet.create({
+  export const styles = StyleSheet.create({
   
   header: {
     backgroundColor: '#AB0032'
@@ -235,6 +235,7 @@ Settingsbutton: {
     height:45,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignSelf: 'center',
     alignItems: 'center',
     marginBottom:20,
     width:250,

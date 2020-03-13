@@ -23,7 +23,7 @@ import Settings from "../frontend/screens/Settings";
 import AuthLoadingScreen from "./AuthLoadingScreen";
 import HouseHoldMembers from "../frontend/screens/HouseHoldMembers";
 import Chores from "../frontend/screens/Chores";
-import Messaging from "../frontend/screens/Messaging";
+import ChatScreen from "../frontend/screens/ChatScreen";
 import Calendar from "../frontend/screens/Calendar";
 
 // Load Screen
@@ -90,7 +90,7 @@ const SignedIn = createMaterialBottomTabNavigator(
       }
     },
     Messaging: {
-      screen: Messaging,
+      screen: ChatScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor, focused }) => (
           <Icon size={22} name={"comments"} style={{ color: tintColor }} />
