@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { Platform , KeyboardAvoidingView,SafeAreaView } from 'react-native';
+import { Platform , KeyboardAvoidingView,SafeAreaView, View } from 'react-native';
+import {Header, Left, Icon} from 'native-base';
+import {styles} from '../styles/style';
+
 // @flow
 import { GiftedChat } from 'react-native-gifted-chat'; // 0.3.0
 
@@ -27,9 +30,18 @@ class ChatScreen extends React.Component {
 
         if(Platform.OS=='android'){
             return(
+                
+              <View style = {{flex: 1}}>
+                <Header style = {styles.header}>
+                    <Left style = {{flex: 1, marginHorizontal: 10}}>
+                    <Icon name={'menu'} style={{color: 'black'}} onPress={() => this.props.navigation.openDrawer()}/>
+                    </Left>
+                </Header>
                 <KeyboardAvoidingView style={{flex:1}}behavior="padding" keyboardVerticalOffset={0} enabled>
                     {chat}
+                    
                 </KeyboardAvoidingView>
+                </View>
             );
         }
     return<SafeAreaView style={{flex:1}}>{chat}</SafeAreaView>; 
