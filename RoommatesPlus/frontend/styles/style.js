@@ -31,7 +31,6 @@ export const styles = StyleSheet.create({
     fontWeight:'bold',
     fontSize: 20,
     color: 'white',
-    
   },
 
   textInput: {
@@ -44,7 +43,6 @@ export const styles = StyleSheet.create({
   },
   
   headline: {
-    //textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 24,
     alignItems: 'stretch',
@@ -57,12 +55,9 @@ export const styles = StyleSheet.create({
   
   footer:{
     textAlign: 'center',
-    //alignItems: 'center',
     fontWeight: 'bold',
     fontSize: 24,
     marginTop: 0,
-    // width: 200,
-    //backgroundColor: 'green',
     justifyContent: 'center'
       
   },
@@ -136,6 +131,7 @@ export const styles = StyleSheet.create({
     height:45,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignSelf: 'center',
     alignItems: 'center',
     marginBottom:20,
     width:250,
@@ -152,35 +148,19 @@ export const styles = StyleSheet.create({
   CreateAccounttextInput: {
     height: 40,
     alignSelf: 'center',
+    textAlign: 'center',
     marginBottom: 30,
     color: '#AB0032',
     borderBottomColor: 'black',
     borderBottomWidth: 1,
-      
   },
-  
- // CreateAccountheadline: {
-    //textAlign: 'center',
-   // fontWeight: 'bold',
-   // fontSize: 24,
-   // alignItems: 'stretch',
-   // flexDirection: 'row',
-   // justifyContent: 'center',
-   // marginHorizontal: 60,
-   // color: 'white',
-    
-//  },
   
   CreateAccountfooter:{
     textAlign: 'center',
-    //alignItems: 'center',
     fontWeight: 'bold',
     fontSize: 24,
     marginTop: 0,
-    // width: 200,
-    //backgroundColor: 'green',
     justifyContent: 'center'
-      
   },
 
   //--------------------------------------Profile Display------------------------------------
@@ -194,7 +174,6 @@ export const styles = StyleSheet.create({
     borderBottomColor: '#AB0032',
     borderBottomWidth: 1,
     //marginHorizontal: 55,
-
 },
 
 //-----------------------------create household display------------------------------
@@ -207,10 +186,7 @@ CreateHouseholdheader: {
   borderBottomColor: '#AB0032',
   borderBottomWidth: 1,
   marginHorizontal: 55,
-
 },
-
-
 
 CreateHouseholdtextInput: {
   height: 40,
@@ -219,7 +195,6 @@ CreateHouseholdtextInput: {
   color: '#AB0032',
   borderBottomColor: 'black',
   borderBottomWidth: 1,
-    
 },
 
 CreateHouseholdbutton: {
@@ -265,13 +240,11 @@ Settingsbutton: {
     width:250,
     borderRadius:30,
     backgroundColor: "#AB0032"
-  
 },
 
 SettingsbuttonText: {
   fontWeight:'bold',
   fontSize: 20,
   color: 'white',
-  
 },
 });
