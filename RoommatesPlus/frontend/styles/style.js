@@ -123,12 +123,12 @@ export const styles = StyleSheet.create({
   CreateAccountheader: {
       fontSize: 24,
       color: 'black',
+      alignSelf: 'center',
       fontWeight: 'bold',
       paddingBottom: 10,
       marginBottom: 40,
       borderBottomColor: cwuColor,
       borderBottomWidth: 1,
-      marginHorizontal: 55,
   },
 
   CreateAccountbutton: {
@@ -151,7 +151,7 @@ export const styles = StyleSheet.create({
 
   CreateAccounttextInput: {
     height: 40,
-    alignSelf: 'stretch',
+    alignSelf: 'center',
     marginBottom: 30,
     color: '#AB0032',
     borderBottomColor: 'black',
@@ -188,6 +188,7 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     color: 'black',
     fontWeight: 'bold',
+    alignSelf: 'center',
     paddingBottom: 10,
     marginBottom: 20,
     borderBottomColor: '#AB0032',

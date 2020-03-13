@@ -96,7 +96,7 @@ export default class Login extends Component {
               onPress={() => this.props.navigation.navigate("CrtAccountScreen")}
               style={styles.Loginbutton}
             >
-              <Text style={styles.LoginbuttonText}>CREATE ACCOUNT</Text>
+              <Text style={styles.LoginbuttonText}>SIGN UP</Text>
             </TouchableOpacity>
           </View>
         </View>
