@@ -1,4 +1,4 @@
-//todo app https://codeburst.io/todo-app-with-react-native-f889e97e398e
+
 import React, { Component } from "react";
 import {
   AppRegistry,
@@ -330,4 +330,5 @@ const styles = StyleSheet.create({
     borderWidth: isAndroid ? 0 : 1,
     width: "100%"
   }
+
 });

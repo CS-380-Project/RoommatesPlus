@@ -4,7 +4,6 @@ import { Text, View, StyleSheet, TextInput } from 'react-native';
 import {Header, Left, Icon} from 'native-base';
 import CalendarPicker from 'react-native-calendar-picker';
 
-
 const isAndroid = Platform.OS == "android";
 const viewPadding = 10; 
 
@@ -45,5 +44,3 @@ export default class Calendar extends Component {
         );
       }
     } 
-
-    
