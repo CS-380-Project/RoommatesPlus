@@ -46,39 +46,30 @@ export default class Login extends Component {
         </View>
         <View style={{justifyContent: 'center', height: 400 }}>
 
-            <TextInput
-              style={styles.LogintextInput}
-              placeholder="Enter your email"
-              placeholderTextColor='black'
-              onChangeText={email => this.setState({ email })}
-              value={this.state.email}
-            />
+        <Text style={styles.Loginheadline}>Email</Text>
 
 <TextInput style = {styles.LogintextInput}  placeholder="Enter your email"
     onChangeText={(email) => this.setState({email})}
     value={this.state.email}/>
 
-            <TextInput
-              secureTextEntry
-              style={styles.LogintextInput}
-              placeholder="Enter your password"
-              placeholderTextColor='black'
-              onChangeText={password => this.setState({ password })}
-              value={this.state.password}
-            />
+<Text style={styles.Loginheadline}>Password</Text>
 
 <TextInput  secureTextEntry style = {styles.LogintextInput} placeholder =  "enter password"  onChangeText={(password) => this.setState({password})}
     value={this.state.password}/>
 
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("CrtAccountScreen")}
-              style={styles.Loginbutton}
-            >
-              <Text style={styles.LoginbuttonText}>SIGN UP</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </KeyboardAvoidingView>
+<TouchableOpacity onPress = {() => {this.onLoginButtonPress(); this.props.navigation.navigate('Roommates');}}
+  style = {styles.Loginbutton}>
+  <Text style={styles.LoginbuttonText}>SIGN IN</Text>
+</TouchableOpacity>
+
+<TouchableOpacity onPress = {() => this.props.navigation.navigate('CrtAccountScreen')}
+  style = {styles.Loginbutton}>
+  <Text style={styles.LoginbuttonText}>CREATE ACCOUNT</Text>
+</TouchableOpacity>
+
+    </View>    
+  </View>             
+</KeyboardAvoidingView>
     );
     }
 }   
