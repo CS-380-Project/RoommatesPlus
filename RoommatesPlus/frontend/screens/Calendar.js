@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { styles } from '../styles/style';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
 import {Header, Left, Icon} from 'native-base';
-import CalendarPicker from ' ';
-
+import CalendarPicker from 'react-native-calendar-picker';
 
 const isAndroid = Platform.OS == "android";
 const viewPadding = 10; 
