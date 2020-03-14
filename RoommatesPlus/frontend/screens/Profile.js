@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { styles } from "../styles/style";
-import { Text, View, TextInput } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Header, Left, Icon } from "native-base";
 import Fire from "../../backend/Fire";
@@ -71,21 +71,29 @@ export default class Profile extends Component {
           </Left>
         </Header>
         <View style={styles.container}>
-          <Text style={styles.headline}>Profile</Text>
-          <Text style={styles.headline}>
-            Name: {this.state.firstName + " " + this.state.lastName}
+          <View style={{ ...StyleSheet.absoluteFill }}>
+            <Image
+              source={{
+                uri:
+                  "https://firebasestorage.googleapis.com/v0/b/roommatesplus-15f85.appspot.com/o/wal2.jpg?alt=media&token=89aa0b8c-3687-4eaa-9198-c17418499e72"
+              }}
+              style={{ flex: 1 }}
+            />
+          </View>
+          <Text style={styles.Profileheader}>Name</Text>
+          <Text style={{ alignSelf: "center" }}>
+            {" "}
+            {this.state.firstName + " " + this.state.lastName}
           </Text>
-          <Text style={styles.headline}>Gender: {this.state.gender}</Text>
-          <Text style={styles.headline}>
-            Phone Number: {this.state.phoneNumber}
-          </Text>
-          <Text style={styles.headline}>Email: {this.state.userEmail}</Text>
-          {/*Testing for editing existing database data*/}
-          {/* <TextInput style = {styles.textInput}  onChangeText={(newName) => this.setState({newName})}
-                    value={this.state.newName} ></TextInput>
-                <TouchableOpacity style = {styles.button} on onPress = { console.log('new namea =========> '+ this.state.newName),  this.editName.bind()} >
-                    <Text style = {styles.buttonText}>Change name</Text>
-                </TouchableOpacity> */}
+
+          <Text style={styles.Profileheader}>Gender:</Text>
+          <Text style={{ alignSelf: "center" }}> {this.state.gender}</Text>
+
+          <Text style={styles.Profileheader}>Phone Number:</Text>
+          <Text style={{ alignSelf: "center" }}> {this.state.phoneNumber}</Text>
+
+          <Text style={styles.Profileheader}>Email:</Text>
+          <Text style={{ alignSelf: "center" }}> {this.state.userEmail}</Text>
         </View>
       </View>
     );
