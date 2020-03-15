@@ -38,7 +38,6 @@ export default class Calendar extends Component {
               onDateChange={this.onDateChange}
             />
             <View>
-              <Text>Chores to do:  {}</Text>
             </View>
           </View>
           
